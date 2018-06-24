@@ -1,33 +1,64 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import firebase from 'firebase';
 
-import { HomePage } from '../pages/home/home';
+import { AuthProvider } from '../providers/auth/auth';
+
 import { LoginPage } from '../pages/login/login';
+import { DashboardPage } from '../pages/dashboard/dashboard';
+import { OrdersPage } from '../pages/orders/orders';
+import { StockPage } from '../pages/stock/stock';
+import { AuditPage } from '../pages/audit/audit';
+import { HistoryPage } from '../pages/history/history';
+import { NotesPage } from '../pages/notes/notes';
+import { UploadPage } from '../pages/upload/upload';
+import { AboutPage } from '../pages/about/about';
+import { SettingsPage } from '../pages/settings/settings';
+
+import { HomePage } from '../pages/home/home';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+  @ViewChild(Nav) nav: Nav;
+  @ViewChild(AuthProvider) authProvider: AuthProvider;
   rootPage:any;
+
+  pages: Array<{title: string, component: any}>;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     firebase.initializeApp({
-      apiKey: "AIzaSyBJTmt3LGBm5CTiO5DUZ4W3O5mTLphaoKY",
-      authDomain: "javebratt-playground.firebaseapp.com",
-      databaseURL: "https://javebratt-playground.firebaseio.com",
-      projectId: "javebratt-playground",
-      storageBucket: "javebratt-playground.appspot.com",
-      messagingSenderId: "369908572440"
+      apiKey: "AIzaSyBRaLZKmTlEeHVNzg2t_Bscg_jwx4-qIbo",
+      authDomain: "epos-project-9eeb8.firebaseapp.com",
+      databaseURL: "https://epos-project-9eeb8.firebaseio.com",
+      projectId: "epos-project-9eeb8",
+      storageBucket: "epos-project-9eeb8.appspot.com",
+      messagingSenderId: "318890124720"
     });
+
+    this.pages = [
+      { title: 'Dashboard', component: DashboardPage },
+      { title: 'Orders', component: OrdersPage },
+      { title: 'Stock', component: StockPage },
+      { title: 'Audit', component: AuditPage },
+      { title: 'History', component: HistoryPage },
+      { title: 'Notes', component: NotesPage },
+      { title: 'Upload', component: UploadPage },
+      { title: 'About', component: AboutPage },
+      { title: 'Settings', component: SettingsPage },
+      { title: 'Logout', component: LoginPage },
+      { title: 'Home', component: HomePage }
+    ];
 
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if (!user) {
         this.rootPage = LoginPage;
         unsubscribe();
       } else {
-        this.rootPage = HomePage;
+        this.rootPage = DashboardPage;
         unsubscribe();
       }
     });
@@ -38,6 +69,19 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();      
     });
+  }
+
+  openPage(page) {
+    // Reset the content nav to have just this page
+    // we wouldn't want the back button to show in this scenario
+    this.nav.setRoot(page.component);
+  }
+
+  logout(){
+    this.authProvider.logoutUser()
+    .then( authData => {
+        this.nav.setRoot(LoginPage);
+      });
   }
 }
 

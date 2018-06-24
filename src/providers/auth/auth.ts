@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
 import firebase from 'firebase';
 
 @Injectable()
 export class AuthProvider {
-  constructor() {}
+  constructor(
+    public storage: Storage
+  ) {}
 
   loginUser(email: string, password: string): Promise<any> {
-    return firebase.auth().signInWithEmailAndPassword(email, password);
+    return firebase.auth().signInWithEmailAndPassword(email, password).then((result) => {
+      this.storage.set('userId', result.user.uid);
+      console.log('result', result);
+    });
   }
 
   signupUser(email: string, password: string): Promise<any> {
@@ -27,6 +33,7 @@ export class AuthProvider {
   }
 
   logoutUser(): Promise<void> {
+    this.storage.remove('userId');
     return firebase.auth().signOut();
   }
 }

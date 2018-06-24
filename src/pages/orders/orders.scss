@@ -1,0 +1,24 @@
+page-orders {
+    .dashboard-button {
+        width: 100%;
+        position:relative;
+        padding-top:100%;
+    }
+
+    .dashboard-button-text {
+        position: absolute;
+        top: 30%;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+
+    .dashboard-button-icon {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        font-size: 2em;
+    }
+}

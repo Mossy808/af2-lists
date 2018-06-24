@@ -1,0 +1,100 @@
+<!--
+  Generated template for the OrdersPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button menuToggle style="width:34px;height:34px;background-color:transparent;">
+        <ion-icon name="menu" style="font-size: 2.2em;"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Orders</ion-title>
+    <ion-buttons end>
+      <button ios-more style="width:34px;height:34px;background-color:transparent;" (tap)="presentPopover($event)">
+        <ion-icon name="ios-more" style="font-size: 2.2em;"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-row style="height: 100%">
+    <ion-col col-7>
+      <div>
+        <h2>
+          Categories
+        </h2>
+        <ion-col col-4 *ngFor="let product of products | async">
+          <button ion-button outline class="" (click)="openPage(ordersPage)">
+            <span class="">Category</span>
+          </button>
+        </ion-col>
+      </div>
+      <hr>
+      <div>
+        <h2>
+          Products
+        </h2>
+        <hr>
+
+        <div>
+          <ion-row>
+            <ion-col col-4 *ngFor="let product of products | async">
+              <button ion-button outline class="dashboard-button" (click)="addToOrder(product)" style="width:100%">
+                <span class="dashboard-button-text">{{product.productCode}}</span>
+                <br/>
+                <span class="dashboard-button-text">{{product.productName}}</span>
+              </button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </div>
+    </ion-col>
+
+    <!-- Order Reciept -->
+    <ion-col col-5>
+      <div style="width:100%;height:70%;border: 1px solid black">
+        <ion-list style="overflow-y: scroll;height: 90%;margin: 0px;">
+          <ion-item *ngFor="let product of currentOrderList.Products">
+            <span style="width: 80%;display: inline-flex">{{product.productCode}} - {{product.productName}}</span>
+            <span style="width: 10%;display: inline-flex">{{product.quantity}}</span>
+            <ion-buttons end style="display: inline-flex;width: 10%">
+              <button ios-close style="width:100%;background-color:transparent;" (tap)="presentPopover($event)">
+                <ion-icon name="ios-close" style=""></ion-icon>
+              </button>
+            </ion-buttons>
+          </ion-item>
+        </ion-list>
+        <div style="height:10%;border-top:1px black solid">
+          <h3>17 Items - £7.20</h3>
+        </div>
+      </div>
+      <ion-row>
+        <ion-col col-6>
+          <button ion-button outline class="" style="width:100%" (click)="openPage(ordersPage)">
+            <span class="dashboard-button-text">Clear Last</span>
+          </button>
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button outline class="" style="width:100%" (click)="openPage(stockPage)">
+            <span class="dashboard-button-text">Clear All</span>
+          </button>
+        </ion-col>
+        <ion-col col-6 right>
+          <button ion-button outline class="dashboard-button" (click)="completeOrder()">
+            <span class="dashboard-button-text">Complete</span>
+            <ion-icon name="ios-check" class="dashboard-button-icon"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+
+
+</ion-content>

@@ -14,3 +14,49 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.background {
+    background: #00f260;
+    background: -webkit-linear-gradient(to bottom, #00f260, #0575e6);
+    background: linear-gradient(to bottom, #00f260, #0575e6);
+}
+
+.full-width {
+    width:100%;
+}
+
+.full-height {
+    height:100%;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.active-navbar-tab {
+    color: red;
+}
+
+.inactive-navbar-tab {
+    color: blue;
+}
+
+.square-34 {
+    height: 34px;
+    width: 34px;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.text-align-right {
+    text-align: right;
+}
