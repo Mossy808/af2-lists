@@ -9,6 +9,8 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
 import { HomePage } from '../home/home';
 
+import { LoginPage } from '../../pages/login/login';
+
 /**
  * Generated class for the SignupPage page.
  *
@@ -43,6 +45,10 @@ export class SignupPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
+  }
+
+  openLoginPage() {
+    this.navCtrl.push(LoginPage);
   }
 
   signupUser(){

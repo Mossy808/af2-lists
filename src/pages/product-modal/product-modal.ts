@@ -4,13 +4,6 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Product } from '../products/products';
 import { Storage } from '@ionic/storage';
 
-/**
- * Generated class for the ProductModalPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-product-modal',
@@ -65,9 +58,10 @@ export class ProductModalPage {
       ProductCode: this.product.ProductCode,
       ProductName: this.product.ProductName,
       ProductDescription: this.product.ProductDescription,
+      Price: this.product.Price,
       DateAdded: dateAdded,
-      Active: true,
-      Colour: 'red',
+      Active: this.product.Active,
+      Colour: this.product.Colour,
     });
 
     let toast = this.toastCtrl.create({

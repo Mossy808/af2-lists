@@ -1,35 +1,87 @@
-<!--
-  Generated template for the ProductModalPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
     <ion-navbar style="border-bottom: 1px solid lightblue;">
-        <ion-title>{{product.ProductCode ? ('Amend Product (' + product.ProductCode + ')') : 'New Product'}}</ion-title>
+        <ion-title>{{product.ProductCode ? ('Amend Product (' + product.ProductCode + ')') : 'Add New Product'}}</ion-title>
         <ion-buttons end>
             <button ion-button block (click)="closeModal()">Close</button>
         </ion-buttons>
-      </ion-navbar>
+    </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
-    <ion-input type="number" [(ngModel)]="product.Sequence" placeholder="Sequence" ></ion-input>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-8>
+                <ion-label>
+                    <b>Sequence</b>
+                </ion-label>
+                <ion-item style="padding:0">
+                    <ion-input type="number" [(ngModel)]="product.Sequence" placeholder="Sequence" style="text-align: right;"></ion-input>
+                </ion-item>
 
-    <ion-input type="string" [(ngModel)]="product.ProductCode" placeholder="Product Code" ></ion-input>
+                <ion-label>
+                    <b>Code</b>
+                </ion-label>
+                <ion-item style="padding:0">
+                    <ion-input type="string" [(ngModel)]="product.ProductCode" placeholder="Product Code" style="text-align: right;"></ion-input>
+                </ion-item>
 
-    <ion-input type="string" [(ngModel)]="product.ProductName" placeholder="Product Name" ></ion-input>
+                <ion-label>
+                    <b>Name</b>
+                </ion-label>
+                <ion-item style="padding:0">
+                    <ion-input type="string" [(ngModel)]="product.ProductName" placeholder="Product Name" style="text-align: right;"></ion-input>
+                </ion-item>
 
-    <ion-input type="string" [(ngModel)]="product.ProductDescription" placeholder="Description" ></ion-input>
+                <ion-label>
+                    <b>Description</b>
+                </ion-label>
+                <ion-item style="padding:0">
+                    <ion-input type="string" [(ngModel)]="product.ProductDescription" placeholder="Description" style="text-align: right;"></ion-input>
+                </ion-item>
 
-    <ion-input type="number" [(ngModel)]="product.Price" placeholder="Price" ></ion-input>
+                <ion-label>
+                    <b>Price</b>
+                </ion-label>
+                <ion-item style="padding:0">
+                    <ion-input type="number" [(ngModel)]="product.Price" placeholder="Price" style="text-align: right;"></ion-input>
+                </ion-item>
+
+            </ion-col>
+            <ion-col col-4>
+                <ion-label>
+                    <b>Active</b>
+                </ion-label>
+                <ion-item class="productModal-active-toggle" style="padding:0">
+                    <ion-toggle [(ngModel)]="product.Active" style="padding-left: 0;"></ion-toggle>
+                </ion-item>
+
+                <ion-label>
+                    <b>Product Colour</b>
+                </ion-label>
+
+                <input [style.background]="product.Colour" [cpAlphaChannel]="'always'" [cpOutputFormat]="'rgba'" [cpPresetColors]="['#fff', '#2889e9']"
+                    [cpAddColorButton]="true" [cpPositionRelativeToArrow]='false' [cpPosition]=left [(colorPicker)]="product.Colour"
+                    class="full-width" />
+
+                <ion-label>
+                    <b>Product Text Colour</b>
+                </ion-label>
+                <ion-item style="padding: 0">
+                    <input [(colorPicker)]="product.TextColour" [style.background]="product.TextColour" class="full-width" />
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+
+
 </ion-content>
 
 <ion-footer>
-    <ion-buttons end>
-        <button ion-button block (click)="saveProduct()">Save</button>
+    <ion-buttons class="full-width" style="display:inline-flex">
+        <button ion-button block (click)="saveProductAndNew()" class="half-width" style="width:50%;margin: 5px;">Add + New</button>
+        <button ion-button block (click)="saveProduct()" class="half-width" style="width:50%;margin: 5px;">Add</button>
     </ion-buttons>
 </ion-footer>

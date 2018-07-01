@@ -92,11 +92,11 @@
           {{product.Price | currency:'£'}}
         </ion-col>
         <ion-col col-1 class="product-table-text-padding text-align-center">
-          <span ng-if="product.active">
+          <span ng-if="product.Active">
             <ion-icon name="ios-checkmark"></ion-icon>
           </span>
-          <span ng-if="!product.active">
-            <ion-icon name="ios-alert-outline"></ion-icon>
+          <span ng-if="!product.Active">
+            <ion-icon name="ios-close"></ion-icon>
           </span>
         </ion-col>
         <ion-col col-1 style="padding-left: 17px;">
@@ -114,7 +114,7 @@
           <ion-input type="number" placeholder="Search Categories" left style="border: 1px black solid;border-radius: 10px 0px 0px 10px;"></ion-input>
           <ion-icon name="ios-search" class="searchInputAddOn"></ion-icon>
         </div>
-        <button ion-button (click)="addCategory()" end style="width:25%">
+        <button ion-button (click)="openCategoryModal(category)" end style="width:25%">
           <ion-icon name="add" style="font-size: 1.8em;margin-right: 10px;"></ion-icon>
           <span> Add Category</span>
         </button>
@@ -144,28 +144,28 @@
             Edit
           </ion-col>
         </ion-row>
-        <ion-row *ngFor="let product of products | async" style="border-bottom: 1px solid gray;">
+        <ion-row *ngFor="let category of categories | async" style="border-bottom: 1px solid gray;">
           <ion-col col-1 class="product-table-text-padding text-align-left">
-            {{product.sequence}}
+            {{category.Sequence}}
           </ion-col>
           <ion-col col-2 class="product-table-text-padding">
-            {{product.productCode}}
+            {{category.ProductCode}}
           </ion-col>
           <ion-col col-4 class="product-table-text-padding">
-            {{product.productName}}
+            {{category.ProductName}}
           </ion-col>
           <ion-col col-2 class="product-table-text-padding">
-            {{product.productName}}
+            {{category.ProductName}}
           </ion-col>
           <ion-col col-1 class="product-table-text-padding text-align-right">
-            {{product.price | currency:'£'}}
+            {{category.Price | currency:'£'}}
           </ion-col>
           <ion-col col-1 class="product-table-text-padding text-align-center">
-            <span ng-if="product.active">
+            <span ng-if="product.Active">
               <ion-icon name="ios-checkmark"></ion-icon>
             </span>
-            <span ng-if="!product.active">
-              <ion-icon name="ios-alert-outline"></ion-icon>
+            <span ng-if="!product.Active">
+              <ion-icon name="ios-close"></ion-icon>
             </span>
           </ion-col>
           <ion-col col-1 style="padding-left: 17px;">

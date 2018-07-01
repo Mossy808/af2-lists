@@ -9,6 +9,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { LoginPage } from '../pages/login/login';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { OrdersPage } from '../pages/orders/orders';
+import { ProductsPage } from '../pages/products/products';
 import { StockPage } from '../pages/stock/stock';
 import { AuditPage } from '../pages/audit/audit';
 import { HistoryPage } from '../pages/history/history';
@@ -16,8 +17,6 @@ import { NotesPage } from '../pages/notes/notes';
 import { UploadPage } from '../pages/upload/upload';
 import { AboutPage } from '../pages/about/about';
 import { SettingsPage } from '../pages/settings/settings';
-
-import { HomePage } from '../pages/home/home';
 
 @Component({
   templateUrl: 'app.html'
@@ -42,6 +41,7 @@ export class MyApp {
     this.pages = [
       { title: 'Dashboard', component: DashboardPage },
       { title: 'Orders', component: OrdersPage },
+      { title: 'Products', component: ProductsPage },
       { title: 'Stock', component: StockPage },
       { title: 'Audit', component: AuditPage },
       { title: 'History', component: HistoryPage },
@@ -49,8 +49,7 @@ export class MyApp {
       { title: 'Upload', component: UploadPage },
       { title: 'About', component: AboutPage },
       { title: 'Settings', component: SettingsPage },
-      { title: 'Logout', component: LoginPage },
-      { title: 'Home', component: HomePage }
+      { title: 'Logout', component: LoginPage }
     ];
 
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {

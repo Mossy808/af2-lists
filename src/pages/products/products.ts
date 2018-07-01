@@ -22,7 +22,20 @@ export class Product {
   CategoryId: number;
   Sequence: number;
   Active: boolean;
-  Color: string;
+  Colour: string;
+  TextColour: string;
+ }
+
+ export class Category {
+  Id: number;
+  CategoryName: string;
+  CategoryDescription: string;
+  DateAdded: Date;
+  ProductIds: Product[];
+  Sequence: number;
+  Active: boolean;
+  Colour: string;
+  TextColour: string;
  }
 
 @IonicPage()
@@ -34,6 +47,8 @@ export class ProductsPage {
 
   products: any;
   productsList: AngularFireList<any>;
+  categories: any;
+  categoriesList: AngularFireList<any>;
   userId: any;
   showProducts: boolean = true;
 
@@ -50,8 +65,9 @@ export class ProductsPage {
       console.log('userId from Product.ts - ', this.userId);
       this.productsList = this.afDatabase.list('/products/' + this.userId);
       this.products = afDatabase.list('/products/' + this.userId).valueChanges();
-    });
-    
+      this.categoriesList = this.afDatabase.list('/categories/' + this.userId);
+      this.categories = afDatabase.list('/categories/' + this.userId).valueChanges();
+    });    
   }
 
   public openProductModal(product: Product){
@@ -60,8 +76,9 @@ export class ProductsPage {
     modalPage.present();
   }
 
-  public openCategoryModal(){
-    var modalPage = this.modalCtrl.create(CategoryModalPage);
+  public openCategoryModal(category: Category){
+    let selectedCategory = category;
+    var modalPage = this.modalCtrl.create(CategoryModalPage, selectedCategory);
     modalPage.present();
   }  
 

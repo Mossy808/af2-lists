@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, DateTime, ToastController } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
-import { Product } from '../products/products';
+
+import _ from 'underscore'
 
 /**
  * Generated class for the OrdersPage page.
@@ -39,6 +40,9 @@ export class OrdersPage {
   currentOrderList: Order = new (Order);
   userId: any;
   //product: Product;
+
+  totalItems: number;
+  totalPrice: number;
 
   constructor(
     public navCtrl: NavController,
@@ -104,8 +108,49 @@ export class OrdersPage {
     prompt.present();
   }
 
-  addToOrder(product: OrderProduct) {
-    this.currentOrderList.Products.push(product);
+  addToOrder(product: OrderProduct) {    
+    if (this.currentOrderList.Products.length) {
+
+      var existingOrderProduct = null;
+
+      this.currentOrderList.Products.forEach (element => {
+        if (element.Id === product.Id) {
+          existingOrderProduct = element;
+        }
+      });
+
+      if (!existingOrderProduct) {
+        product.Quantity = 1;
+        this.currentOrderList.Products.push(product);
+      } else {
+        this.currentOrderList.Products.forEach (element => {
+          if (element.Id === product.Id) {
+            element.Quantity += 1;
+          }
+        });
+      }
+    } else {
+      product.Quantity = 1;
+      this.currentOrderList.Products.push(product);
+    }
+    this.calculateTotalItems();
+    this.calculateTotalPrice();
+  }
+
+  calculateTotalItems() {
+      this.totalItems = 0
+      this.currentOrderList.Products.forEach (element => {
+        this.totalItems += element.Quantity;
+      });
+  }
+
+  calculateTotalPrice() {
+    this.totalPrice = 0
+    this.currentOrderList.Products.forEach (element => {
+      if (element.Price) {
+        this.totalPrice += (element.Quantity * element.Price);
+      }
+    });
   }
 
   completeOrder() {

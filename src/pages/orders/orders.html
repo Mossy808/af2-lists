@@ -25,54 +25,99 @@
 
 <ion-content padding>
   <ion-row style="height: 100%">
+
     <ion-col col-7>
       <div>
+
         <h2>
           Categories
         </h2>
-        <ion-col col-4 *ngFor="let product of products | async">
-          <button ion-button outline class="" (click)="openPage(ordersPage)">
+
+        <div class="full-width" style="height: 120px;overflow: -webkit-paged-x;display: inline-flex;">
+          <button ion-button outline *ngFor="let product of products | async" style="width: 175px;display: inline-flex;" (click)="openPage(ordersPage)">
             <span class="">Category</span>
           </button>
-        </ion-col>
+        </div>
+
       </div>
+
       <hr>
-      <div>
+
+      <div style="height: 75%">
+
         <h2>
           Products
         </h2>
+
         <hr>
 
-        <div>
+        <div class="full-height" style="overflow: scroll;overflow-x: hidden;">
           <ion-row>
-            <ion-col col-4 *ngFor="let product of products | async">
+            <ion-col col-3 *ngFor="let product of products | async">
               <button ion-button outline class="dashboard-button" (click)="addToOrder(product)" style="width:100%">
-                <span class="dashboard-button-text">{{product.productCode}}</span>
+                <span class="dashboard-button-text">{{product.ProductCode}}</span>
                 <br/>
-                <span class="dashboard-button-text">{{product.productName}}</span>
+                <span class="dashboard-button-text">{{product.ProductName}}</span>
               </button>
             </ion-col>
           </ion-row>
         </div>
       </div>
+
     </ion-col>
 
     <!-- Order Reciept -->
     <ion-col col-5>
       <div style="width:100%;height:70%;border: 1px solid black">
-        <ion-list style="overflow-y: scroll;height: 90%;margin: 0px;">
+        <div style="height:6%;border-bottom:1px black solid">
+            <h3 style="text-align: center;padding-top: 6px;">Orders List</h3>
+        </div>
+        <ion-list style="overflow-y: scroll;height: 88%;margin: 0px;">
           <ion-item *ngFor="let product of currentOrderList.Products">
-            <span style="width: 80%;display: inline-flex">{{product.productCode}} - {{product.productName}}</span>
-            <span style="width: 10%;display: inline-flex">{{product.quantity}}</span>
-            <ion-buttons end style="display: inline-flex;width: 10%">
-              <button ios-close style="width:100%;background-color:transparent;" (tap)="presentPopover($event)">
-                <ion-icon name="ios-close" style=""></ion-icon>
-              </button>
-            </ion-buttons>
+
+            <ion-row>
+
+              <ion-col col-7>
+                <span style="display: inline-flex">{{product.ProductCode}}</span>
+              </ion-col>
+
+              <ion-col col-4>
+                <span style="display: inline-flex">{{product.Quantity}}</span>
+              </ion-col>
+
+              <ion-col col-1>
+                <span style="display: inline-flex"></span>
+              </ion-col>
+
+              <ion-col col-7>
+                <span style="display: inline-flex">{{product.ProductName}}</span>
+              </ion-col>
+
+              <ion-col col-4>
+                <span style="display: inline-flex">{{product.Price | currency:'£'}}</span>
+              </ion-col>
+
+              <ion-col col-1>
+                <ion-buttons end style="display: inline-flex;width: 10%">
+                  <button ios-close style="width:100%;background-color:transparent;" (tap)="presentPopover($event)">
+                    <ion-icon name="ios-close" style=""></ion-icon>
+                  </button>
+                </ion-buttons>
+              </ion-col>
+
+            </ion-row>
+
           </ion-item>
         </ion-list>
-        <div style="height:10%;border-top:1px black solid">
-          <h3>17 Items - £7.20</h3>
+        <div style="height:6%;border-top:1px black solid">
+          <ion-row>
+            <ion-col col-8>
+              <h3>{{totalItems ? totalItems : 0}} Items</h3>
+            </ion-col>
+            <ion-col col-4>
+              <h3>{{totalPrice ? (totalPrice | currency:'£') : (0.00 | currency:'£')}}</h3>
+            </ion-col>
+          </ion-row>
         </div>
       </div>
       <ion-row>
@@ -86,7 +131,18 @@
             <span class="dashboard-button-text">Clear All</span>
           </button>
         </ion-col>
-        <ion-col col-6 right>
+        <ion-col col-12>
+          <button ion-button outline class="" style="width:100%" (click)="openPage(ordersPage)">
+            <span class="dashboard-button-text">Add Discount</span>
+          </button>
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button outline class="dashboard-button" (click)="completeOrder()">
+            <span class="dashboard-button-text">Refund</span>
+            <ion-icon name="ios-check" class="dashboard-button-icon"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-6>
           <button ion-button outline class="dashboard-button" (click)="completeOrder()">
             <span class="dashboard-button-text">Complete</span>
             <ion-icon name="ios-check" class="dashboard-button-icon"></ion-icon>
