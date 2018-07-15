@@ -11,6 +11,7 @@ export class AuthProvider {
   loginUser(email: string, password: string): Promise<any> {
     return firebase.auth().signInWithEmailAndPassword(email, password).then((result) => {
       this.storage.set('userId', result.user.uid);
+      this.storage.set('email', result.user.email);
       console.log('result', result);
     });
   }
@@ -23,7 +24,7 @@ export class AuthProvider {
         firebase
         .database()
         .ref('/userProfile')
-        .child(newUser.uid)
+        .child(newUser.user.uid)
         .set({ email: email });
       });
   }
@@ -34,6 +35,7 @@ export class AuthProvider {
 
   logoutUser(): Promise<void> {
     this.storage.remove('userId');
+    this.storage.remove('email');
     return firebase.auth().signOut();
   }
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ToastController, DateTime } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { Product } from '../products/products';
+import { Product, Category } from '../products/products';
 import { Storage } from '@ionic/storage';
 
 @IonicPage()
@@ -10,6 +10,11 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'category-modal.html',
 })
 export class CategoryModalPage {
+  category: Category = this.navParams.data;
+  newCategory: boolean = false;
+  categories: any;
+  categoriesList: AngularFireList<any>;
+  userId: any;
 
   constructor(
     public navCtrl: NavController,
@@ -19,9 +24,9 @@ export class CategoryModalPage {
     public storage: Storage,
     private toastCtrl: ToastController
   ) {
-    if (!this.product) {
-      this.product = new Product();
-      this.newProduct = true;
+    if (!this.category) {
+      this.category = new Category();
+      this.newCategory = true;
     }
 
     storage.get('userId').then((returnedUserId) => {
@@ -44,19 +49,16 @@ export class CategoryModalPage {
       dateAdded = this.category.DateAdded;
     }
 
-    const newOrderRef = this.productsList.push({});
+    const newOrderRef = this.categoriesList.push({});
 
     newOrderRef.set({
       //userId: this.userId,
       Id: newOrderRef.key,
-      Sequence: this.product.Sequence,
-      ProductCode: this.product.ProductCode,
-      ProductName: this.product.ProductName,
-      ProductDescription: this.product.ProductDescription,
-      Price: this.product.Price,
+      Sequence: this.category.Sequence,
+      CategoryName: this.category.CategoryName,
       DateAdded: dateAdded,
-      Active: this.product.Active,
-      Colour: this.product.Colour,
+      Active: this.category.Active,
+      Colour: this.category.Colour,
     });
 
     let toast = this.toastCtrl.create({

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import { Product } from '../products/products'
 /**
  * Generated class for the StockPage page.
  *
@@ -15,7 +17,39 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class StockPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  userId: any;
+  products: any;
+  productsList: AngularFireList<any>;
+  stock: any;
+  stockList: AngularFireList<any>;
+  date: Date = new Date();
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public alertCtrl: AlertController,
+    public afDatabase: AngularFireDatabase,
+    public storage: Storage,
+    public modalCtrl: ModalController
+  ) {
+    storage.get('userId').then((returnedUserId) => {
+      this.userId = returnedUserId;
+
+      console.log('userId from Product.ts - ', this.userId);
+
+      this.productsList = this.afDatabase.list('/products/' + this.userId);
+      this.products = afDatabase.list('/products/' + this.userId).valueChanges();
+
+      this.stockList = this.afDatabase.list('/stock/' + this.userId + '/' + this.date);
+      this.stock = afDatabase.list('/stock/' + this.userId + '/' + this.date).valueChanges();
+
+      console.log('prods list', this.productsList);
+      console.log('avial', this.products);
+    });
+  }
+
+  saveStock() {
+    
   }
 
   ionViewDidLoad() {

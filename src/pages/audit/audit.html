@@ -25,5 +25,23 @@
 
 
 <ion-content padding>
-
+  <ion-grid>
+    <ion-row *ngFor="let audit of audits | async" style="border-bottom: 1px solid gray;">
+      <ion-col col-4 class="text-align-left">
+        {{audit.Type}}
+      </ion-col>
+      <ion-col col-3 class="">
+        {{audit.User}}
+      </ion-col>
+      <ion-col col-3 class="">
+        {{audit.Date}}
+      </ion-col>
+      <ion-col col-12 class="">
+        {{audit.Description}}
+      </ion-col>
+      <ion-col col-12 class="">
+        {{audit.Details}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController, ViewController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 import { OrdersPage } from '../../pages/orders/orders';
 import { StockPage } from '../../pages/stock/stock';
@@ -11,6 +12,7 @@ import { AboutPage } from '../../pages/about/about';
 import { SettingsPage } from '../../pages/settings/settings';
 
 import { PopoverPage } from '../../pages/popover/popover';
+import { Time } from '../../../node_modules/@angular/common';
 /**
  * Generated class for the DashboardPage page.
  *
@@ -34,11 +36,15 @@ export class DashboardPage {
   uploadPage: any;
   aboutPage: any;
   settingsPage: any;
+  displayName: string;
+  date: Date = new Date();
+  time: Time;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public popoverCtrl: PopoverController
+    public popoverCtrl: PopoverController,
+    public storage: Storage
   ) {
     this.ordersPage = OrdersPage;
     this.stockPage = StockPage;
@@ -48,6 +54,10 @@ export class DashboardPage {
     this.uploadPage = UploadPage;
     this.aboutPage = AboutPage;
     this.settingsPage = SettingsPage;
+
+    storage.get('email').then((email) => {
+      this.displayName = email;;
+    });
   }
 
   ionViewDidLoad() {

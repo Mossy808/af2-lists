@@ -19,6 +19,7 @@
       </button>
     </ion-buttons>
   </ion-navbar>
+
   <div class="bar bar-subheader">
     <ion-row>
       <ion-col col-6 class="no-padding">
@@ -35,6 +36,7 @@
       </ion-col>
     </ion-row>
   </div>
+  
 </ion-header>
 
 
@@ -92,10 +94,10 @@
           {{product.Price | currency:'£'}}
         </ion-col>
         <ion-col col-1 class="product-table-text-padding text-align-center">
-          <span ng-if="product.Active">
+          <span *ngIf="product.Active">
             <ion-icon name="ios-checkmark"></ion-icon>
           </span>
-          <span ng-if="!product.Active">
+          <span *ngIf="!product.Active">
             <ion-icon name="ios-close"></ion-icon>
           </span>
         </ion-col>
@@ -107,6 +109,8 @@
       </ion-row>
     </ion-grid>
   </div>
+
+  <!--Categories Page-->
 
   <div *ngIf="showCategories">
       <div style="display:inline-flex; width: 100%;margin-bottom: 10px;">
@@ -125,20 +129,14 @@
           <ion-col col-1 class="text-align-left">
             Seq
           </ion-col>
-          <ion-col col-2>
-            Code
-          </ion-col>
-          <ion-col col-4>
+          <ion-col col-8>
             Name
-          </ion-col>
-          <ion-col col-2>
-            Category
-          </ion-col>
-          <ion-col col-1 class="text-align-center">
-            Price
           </ion-col>
           <ion-col col-1 class="text-align-center">
             Active
+          </ion-col>
+          <ion-col col-1 class="text-align-center">
+            Add
           </ion-col>
           <ion-col col-1 class="text-align-center">
             Edit
@@ -148,28 +146,24 @@
           <ion-col col-1 class="product-table-text-padding text-align-left">
             {{category.Sequence}}
           </ion-col>
-          <ion-col col-2 class="product-table-text-padding">
-            {{category.ProductCode}}
-          </ion-col>
-          <ion-col col-4 class="product-table-text-padding">
-            {{category.ProductName}}
-          </ion-col>
-          <ion-col col-2 class="product-table-text-padding">
-            {{category.ProductName}}
-          </ion-col>
-          <ion-col col-1 class="product-table-text-padding text-align-right">
-            {{category.Price | currency:'£'}}
+          <ion-col col-8 class="product-table-text-padding">
+            {{category.CategoryName}}
           </ion-col>
           <ion-col col-1 class="product-table-text-padding text-align-center">
-            <span ng-if="product.Active">
+            <span *ngIf="category.Active">
               <ion-icon name="ios-checkmark"></ion-icon>
             </span>
-            <span ng-if="!product.Active">
+            <span *ngIf="!category.Active">
               <ion-icon name="ios-close"></ion-icon>
             </span>
           </ion-col>
           <ion-col col-1 style="padding-left: 17px;">
-            <button ion-button (click)="openCategoryModal()" class="square-34 text-align-center;margin: auto;" end>
+              <button ion-button (click)="openCategoryAddProductsModal(category, products)" class="square-34 text-align-center;margin: auto;" end>
+                <ion-icon name="ios-add"></ion-icon>
+              </button>
+            </ion-col>
+          <ion-col col-1 style="padding-left: 17px;">
+            <button ion-button (click)="openCategoryModal(category)" class="square-34 text-align-center;margin: auto;" end>
               <ion-icon name="md-create"></ion-icon>
             </button>
           </ion-col>

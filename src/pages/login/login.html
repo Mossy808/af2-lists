@@ -1,19 +1,22 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+  crossorigin="anonymous">
+
 <main>
   <div id="container">
     <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
       <img src="../../assets/imgs/cat.jpg" style="margin-top: -10px">
       <br>
       <div style="display: inline-flex">
-          <ion-icon name="ios-log-out" role="img" class="icon icon-ios ion-ios-log-out" aria-label="log out" ng-reflect-name="ios-log-out"></ion-icon>
-          <input type="email" placeholder="Your Email Address" formControlName="email" [class.invalid]="!loginForm.controls.email.valid && blur">
-          <ion-icon name="ios-log-out" role="img" class="icon icon-ios ion-ios-log-out" aria-label="log out" ng-reflect-name="ios-log-out"></ion-icon>
-      </div>      
+        <span class="fas fa-user" style="margin: 20px 0px;padding-right: 15px;color: white;font-size: 1.3em;"></span>
+        <input type="email" placeholder="Your Email Address" formControlName="email" [class.invalid]="!loginForm.controls.email.valid && blur">
+        <span class="fas fa-times-circle" style="margin: 25px 0;padding-left: 15px;color: white;font-size: 1.3em;"></span>
+      </div>
       <br>
       <div style="display: inline-flex">
-          <ion-icon name="ios-clipboard" ios-clipboard></ion-icon>
-          <input type="password" placeholder="Your Password" formControlName="password" [class.invalid]="!loginForm.controls.password.valid && blur">
-          <ion-icon name="ios-log-out" role="img" class="icon icon-ios ion-ios-log-out" aria-label="log out" ng-reflect-name="ios-log-out"></ion-icon>
-      </div>      
+        <span class="fas fa-key" style="margin: 20px 0px;padding-right: 15px;color: white;font-size: 1.3em;"></span>
+        <input type="password" placeholder="Your Password" formControlName="password" [class.invalid]="!loginForm.controls.password.valid && blur">
+        <span class="fas fa-times-circle" style="margin: 25px 0;padding-left: 15px;color: white;font-size: 1.3em;"></span>
+      </div>
       <br>
       <input type="submit" value="SIGN IN" [disabled]="!loginForm.valid">
       <br>
@@ -23,7 +26,7 @@
         <ion-col col-6 style="text-align: center" (click)="goToSignup()">
           <!--Poss A color #001cf7-->
           <a href="#" style="color: white;text-decoration-line: none;font-size: 1.2em;">
-            Create Account?
+            Create Account
           </a>
         </ion-col>
         <ion-col col-6 style="text-align: center" (click)="goToResetPassword()">

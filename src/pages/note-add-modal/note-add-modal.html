@@ -1,0 +1,79 @@
+<ion-header>
+
+  <ion-navbar style="border-bottom: 1px solid lightblue;">
+    <ion-title>Add Note</ion-title>
+    <ion-buttons end>
+      <button ion-button block (click)="closeModal()">Close</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-grid>
+    <ion-row>
+
+      <ion-col col-6>
+        <ion-label>
+          <b>User</b>
+        </ion-label>
+        <ion-item style="padding:0">
+          <ion-input type="text" [(ngModel)]="note.User" placeholder="User" style="text-align: right;"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-3>
+        <ion-label>
+          <b>To Do</b>
+        </ion-label>
+        <ion-item class="productModal-active-toggle" style="padding:0">
+          <ion-toggle [(ngModel)]="note.ToDo" style="padding-left: 0;"></ion-toggle>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-3>
+        <ion-label>
+          <b>Important</b>
+        </ion-label>
+        <ion-item class="productModal-active-toggle" style="padding:0">
+          <ion-toggle [(ngModel)]="note.Important" style="padding-left: 0;"></ion-toggle>
+        </ion-item>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col col-12>
+        <ion-label>
+          <b>Ttile</b>
+        </ion-label>
+        <ion-item style="padding:0">
+          <ion-input type="text" [(ngModel)]="note.Title" placeholder="User" style="text-align: right;"></ion-input>
+        </ion-item>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col col-12>
+        <ion-label>
+          <b>Note</b>
+        </ion-label>
+        <ion-item style="padding:0">
+          <ion-input type="text" rows="6" [(ngModel)]="note.Note" placeholder="User" style="text-align: right;"></ion-input>
+        </ion-item>
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>
+<ion-footer>
+  <ion-buttons class="full-width" style="display:inline-flex">
+    <button ion-button block right (click)="saveNote()" class="half-width" style="width:50%;margin: 5px;">Save Note</button>
+  </ion-buttons>
+</ion-footer>

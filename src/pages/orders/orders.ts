@@ -138,14 +138,14 @@ export class OrdersPage {
   }
 
   calculateTotalItems() {
-      this.totalItems = 0
+    this.totalItems = 0;
       this.currentOrderList.Products.forEach (element => {
         this.totalItems += element.Quantity;
       });
   }
 
   calculateTotalPrice() {
-    this.totalPrice = 0
+    this.totalPrice = 0;
     this.currentOrderList.Products.forEach (element => {
       if (element.Price) {
         this.totalPrice += (element.Quantity * element.Price);
@@ -160,7 +160,7 @@ export class OrdersPage {
       //userId: this.userId,
       id: newOrderRef.key,
       date: new Date(),
-      products: this.currentOrderList.Products,
+      products: this.currentOrderList.Products
     });
 
     this.currentOrderList.Products = new Array<OrderProduct>();
@@ -173,6 +173,34 @@ export class OrdersPage {
 
     toast.present();
   }
+
+  addDiscount() {
+    
+  }
+
+  addRefund() {
+    
+  }
+
+  clearLast() {
+
+  }
+
+
+  clearAll() {
+    this.currentOrderList.Products = new Array<OrderProduct>();
+    this.totalItems = 0;
+    this.totalPrice = 0;
+
+    let toast = this.toastCtrl.create({
+      message: 'Order Cleared',
+      duration: 3000,
+      position: 'bottom'
+    });
+
+    toast.present();
+  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrdersPage');

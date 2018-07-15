@@ -1,7 +1,7 @@
 <ion-header>
 
     <ion-navbar style="border-bottom: 1px solid lightblue;">
-        <ion-title>{{product.ProductCode ? ('Amend Category (' + product.ProductCode + ')') : 'Add New Category'}}</ion-title>
+        <ion-title>{{newCategory ? ('Amend Category (' + category.Name + ')') : 'Add New Category'}}</ion-title>
         <ion-buttons end>
             <button ion-button block (click)="closeModal()">Close</button>
         </ion-buttons>
@@ -67,7 +67,7 @@
 
 <ion-footer>
     <ion-buttons class="full-width" style="display:inline-flex">
-        <button ion-button block (click)="saveProductAndNew()" class="half-width" style="width:50%;margin: 5px;">Add + New</button>
-        <button ion-button block (click)="saveProduct()" class="half-width" style="width:50%;margin: 5px;">Add</button>
+        <button ion-button block (click)="saveCategoryAndNew()" class="half-width" style="width:50%;margin: 5px;">Add + New</button>
+        <button ion-button block (click)="saveCategory()" class="half-width" style="width:50%;margin: 5px;">Add</button>
     </ion-buttons>
 </ion-footer>

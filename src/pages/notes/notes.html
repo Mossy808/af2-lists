@@ -6,24 +6,59 @@
 -->
 <ion-header>
 
-    <ion-navbar>
-        <ion-buttons left>
-          <button menuToggle style="width:34px;height:34px;background-color:transparent;">
-            <ion-icon name="menu" style="font-size: 2.2em;"></ion-icon>
-          </button>
-        </ion-buttons>
-      <ion-title>Notes</ion-title>
-      <ion-buttons end>
-          <button ios-more style="width:34px;height:34px;background-color:transparent;"
-          (tap)="presentPopover($event)">
-            <ion-icon name="ios-more" style="font-size: 2.2em;"></ion-icon>
-          </button>
-        </ion-buttons>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-buttons left>
+      <button menuToggle style="width:34px;height:34px;background-color:transparent;">
+        <ion-icon name="menu" style="font-size: 2.2em;"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Notes</ion-title>
+    <ion-buttons end>
+      <button ios-more style="width:34px;height:34px;background-color:transparent;" (tap)="presentPopover($event)">
+        <ion-icon name="ios-more" style="font-size: 2.2em;"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <button ion-button outline class="full-width no-margin" style="border-radius: 0px;" (click)="openAddNoteModal()" [ngClass]="{'active-navbar-tab' : (showProducts), 'inactive-navbar-tab' : (!showProducts)}">
+    <span class="">Add Note</span>
+  </button>
+
+  <ion-grid>
+    <ion-row *ngFor="let note of notes | async" style="border-bottom: 1px solid gray;">
+      <ion-col col-7 class="product-table-text-padding text-align-left">
+        {{note.Title}}
+      </ion-col>
+      <ion-col col-3 class="product-table-text-padding">
+        {{note.User}}
+      </ion-col>
+      <ion-col col-1 class="product-table-text-padding">
+        {{note.ToDo}}
+      </ion-col>
+      <ion-col col-1 class="product-table-text-padding">
+        {{note.Important}}
+      </ion-col>
+      <ion-col col-12 class="product-table-text-padding text-align-right">
+        {{note.Note}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <br /><br />
+  Filter to only show to do and important, pluse search
+  <br /><br />
+  add date added to note openAddNoteModal
+  <br /><br />
+  icons for important and to do
+  <br /><br />
+  bold title
+  <br /><br />
+  show important and to do notes on dashboard
+  <br /><br />
+  Pop up to show message details and change important and to do etc
 
 </ion-content>

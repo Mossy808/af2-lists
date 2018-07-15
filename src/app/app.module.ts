@@ -24,6 +24,8 @@ import { ProductsPage } from '../pages/products/products';
 
 import { ProductModalPage } from '../pages/product-modal/product-modal';
 import { CategoryModalPage } from '../pages/category-modal/category-modal';
+import { CategoryAddProductsModalPage } from '../pages/category-add-products-modal/category-add-products-modal';
+import { NoteAddModalPage } from '../pages/note-add-modal/note-add-modal';
 
 import { PopoverPage } from '../pages/popover/popover';
 
@@ -63,7 +65,9 @@ AngularFireModule.initializeApp(firebaseConfig)
     ProductsPage,
     PopoverPage,
     ProductModalPage,
-    CategoryModalPage
+    CategoryModalPage,
+    CategoryAddProductsModalPage,
+    NoteAddModalPage
   ],
   imports: [
     BrowserModule,
@@ -92,7 +96,9 @@ AngularFireModule.initializeApp(firebaseConfig)
     ProductsPage,
     PopoverPage,
     ProductModalPage,
-    CategoryModalPage
+    CategoryModalPage,
+    CategoryAddProductsModalPage,
+    NoteAddModalPage
   ],
   providers: [
     StatusBar,
