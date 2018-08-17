@@ -56,8 +56,9 @@ export class NoteAddModalPage {
       Title: this.note.Title,
       Note: this.note.Note,
       ToDo: this.note.ToDo,
-      Important: this.note.Important
-    });
+      Important: this.note.Important,
+      DateCreated: new Date()
+  });
 
     let toast = this.toastCtrl.create({
       message: 'Note Added Successfully',

@@ -26,6 +26,9 @@ export class Product {
   Colour: string;
   TextColour: string;
   Unavailable?: boolean;
+  Show?: boolean = true;
+  length: number;
+  Quantity?: number;
 }
 
 export class Category {
@@ -38,12 +41,13 @@ export class Category {
   Active: boolean;
   Colour: string;
   TextColour: string;
+  Selected?: boolean = false;
 }
 
 @IonicPage()
 @Component({
   selector: 'page-products',
-  templateUrl: 'products.html',
+  templateUrl: 'products.html'
 })
 export class ProductsPage {
 

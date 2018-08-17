@@ -18,6 +18,7 @@ export class Note {
   Note: string;
   ToDo: boolean = false;
   Important: boolean = false;
+  DateCreated: Date;
 }
 
 @IonicPage()
@@ -43,6 +44,12 @@ export class NotesPage {
       this.userId = returnedUserId;
       this.notesList = this.afDatabase.list('/notes/' + this.userId);
       this.notes = afDatabase.list('/notes/' + this.userId).valueChanges();
+      console.log(this.notesList);
+      console.log(this.notes);
+
+
+      this.snapshotToArray(this.notesList);
+
     });
   }  
 
@@ -55,5 +62,18 @@ export class NotesPage {
     var modalPage = this.modalCtrl.create(NoteAddModalPage, newNote);
     modalPage.present();
   }
+
+  snapshotToArray(snapshot) {
+    var returnArr = [];
+
+    snapshot.forEach(childSnapshot => {
+      var item = childSnapshot.val();
+      item.key = childSnapshot.key;
+
+      returnArr.push(item);
+    });
+
+    return returnArr;
+  };
 
 }

@@ -1,8 +1,8 @@
 page-dashboard {
     .dashboard-button {
         width: 50%;
-        position:relative;
-        padding-top:50%;
+        position: relative;
+        padding-top: 50%;
         margin: auto;
         display: flex;
         top: 12.5%;
@@ -26,16 +26,48 @@ page-dashboard {
     }
 
     .dashboard-btn-label {
-    /* bottom: 0; */
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: transparent;
-    color: white;
-    text-align: left;
-    padding: 10px;
-    font-size: 1.5em;
-    color: black;
+        /* bottom: 0; */
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: transparent;
+        color: white;
+        text-align: left;
+        padding: 10px;
+        font-size: 1.5em;
+        color: black;
+    }
+
+    .content {
+        height: 100vh;
+        //background: url('https://images.unsplash.com/photo-1477346611705-65d1883cee1e?dpr=0.800000011920929&auto=format&fit=crop&w=1199&h=800&q=80&cs=tinysrgb&crop=') fixed no-repeat;
+        background: url("../../assets/imgs/dashboardBack.jpg") fixed no-repeat currentColor;
+        background-size: cover;
+    }
+
+    .show-page {
+        height: 100vh;
+        //background: url('https://images.unsplash.com/photo-1477346611705-65d1883cee1e?dpr=0.800000011920929&auto=format&fit=crop&w=1199&h=800&q=80&cs=tinysrgb&crop=') fixed no-repeat;
+        background: url("../../assets/imgs/dashboardBack.jpg") fixed no-repeat currentColor;
+        background-size: cover;
+    }
+
+    .toolbar-background {
+        background: inherit;
+        position: absolute;
+        overflow: hidden;
+    }
+
+    .toolbar-background:before {
+        content: "";
+        position: absolute;
+        background: inherit;
+        box-shadow: inset 0 0 0 200px rgba(255,255,255,0.2);
+        filter: blur(10px);
+        -webkit-box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.2);
+        box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.2);
+        -webkit-filter: blur(10px);
+        filter: blur(10px);
     }
 }

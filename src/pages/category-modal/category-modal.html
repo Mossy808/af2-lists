@@ -54,9 +54,13 @@
                 <ion-label>
                     <b>Category Text Colour</b>
                 </ion-label>
-                <ion-item style="padding: 0">
-                    <input [(colorPicker)]="category.TextColour" [style.background]="category.TextColour" class="full-width" />
-                </ion-item>
+              <ion-item style="padding: 0">
+                
+                <input [style.background]="category.TextColour" [cpAlphaChannel]="'always'" [cpOutputFormat]="'rgba'" [cpPresetColors]="['#fff', '#2889e9']"
+                       [cpAddColorButton]="true" [cpPositionRelativeToArrow]='false' [cpPosition]=left [(colorPicker)]="category.TextColour"
+                       class="full-width" />
+
+              </ion-item>
             </ion-col>
         </ion-row>
     </ion-grid>

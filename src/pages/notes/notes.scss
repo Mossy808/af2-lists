@@ -1,3 +1,21 @@
 page-notes {
+    noteImportantToDo {
+        background: linear-gradient(to right, #e13838 1%,rgba(41,137,216,0) 1%,rgba(0, 0, 0, 0) 5%,rgba(0, 0, 0, 0) 0%);
+        margin-bottom: 0px;
+    }
 
+    noteImportant {
+        background: linear-gradient(to right, #6238e1 1%,rgba(41,137,216,0) 1%,rgba(0, 0, 0, 0) 5%,rgba(0, 0, 0, 0) 0%);
+        margin-bottom: 0px;
+    }
+
+    noteToDo {
+        background: linear-gradient(to right, #e1b538 1%,rgba(41,137,216,0) 1%,rgba(0, 0, 0, 0) 5%,rgba(0, 0, 0, 0) 0%);
+        margin-bottom: 0px;
+    }
+
+    noteComplete {
+        background: linear-gradient(to right, #38e14d 1%,rgba(41,137,216,0) 1%,rgba(0, 0, 0, 0) 5%,rgba(0, 0, 0, 0) 0%);
+        margin-bottom: 0px;
+    }
 }

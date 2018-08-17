@@ -1,0 +1,16 @@
+page-order-keypad {
+    .keyboard-btn {
+        width: 100%;
+        height: 105px;
+        font-size: 2em;
+        font-weight: bold;
+    }
+
+    .ion-page {
+        width: 70%;
+    }
+
+    .selectedDiscount {
+        background-color: red;
+    }
+}

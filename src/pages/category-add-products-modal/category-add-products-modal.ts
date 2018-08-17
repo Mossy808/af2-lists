@@ -52,29 +52,14 @@ export class CategoryAddProductsModalPage {
       console.log('avial', this.products);
       console.log('category', this.category);
 
-      //if (this.category.Products) {
-      //  this.addedProducts = this.category.Products;
-      //}
-
       this.filterAvailableList();
 
-      // this.availableProductList = this.navParams.data[1];
-
-      // this.availableProducts.subscribe(items => {
-      //   items.forEach(item => {
-      //     this.category.Products.forEach(addedProduct => {
-      //       if (item.Id === addedProduct.Id) {
-      //         this.availableProducts.splice(this.availableProducts.indexOf(addedProduct), 1);
-      //       }
-      //     })
-      //   });
-      // });
 
       this.products.subscribe((_items) => {
         this.availableProductList = [];
         _items.forEach(item => {
           this.availableProductList.push(item);
-        })
+        });
       });
 
       this.availableProductList.forEach(availableProduct => {
@@ -82,7 +67,7 @@ export class CategoryAddProductsModalPage {
           if (availableProduct.Id === addedProduct.Id) {
             this.availableProducts.splice(this.availableProducts.indexOf(addedProduct), 1);
           }
-        })
+        });
       });
 
       console.log('LOOK HERE AHHHHHHHHHHH', this.availableProducts);
@@ -94,14 +79,17 @@ export class CategoryAddProductsModalPage {
   }
 
   addProductToCategory(product: Product) {
-    var alreadyAdded = false
-    this.category.Products.forEach(addedProduct => {
-      if (product.Id === addedProduct.Id) {
-        alreadyAdded = true;
-      }
-    })
+    var alreadyAdded = false;
+    //this.category.Products.forEach(addedProduct => {
+    //  if (product.Id === addedProduct.Id) {
+    //    alreadyAdded = true;
+    //  }
+    //});
 
     if (!alreadyAdded) {
+      if (!this.category.Products) {
+        this.category.Products = new Array<Product>();
+      }
       this.category.Products.push(product);
     } else {
       let toast = this.toastCtrl.create({
@@ -124,8 +112,13 @@ export class CategoryAddProductsModalPage {
       {
         Products: this.category.Products
       }).then(res => {
-        console.log(res)
-      })
+      console.log(res);
+      });
+
+    this.category.Products.forEach(addedProduct => {
+      this.afDatabase.database.ref(`products/${userId}/` + addedProduct.Id).update(
+        {CategoryId: this.category.Id});
+    });
 
     //const newCategoryRef = this.categoriesList.push({});
 

@@ -1,12 +1,15 @@
 {
   "ExpandedNodes": [
     "",
+    "\\app",
     "\\pages",
     "\\pages\\audit",
+    "\\pages\\dashboard",
     "\\pages\\note-add-modal",
     "\\pages\\notes",
-    "\\pages\\orders"
+    "\\pages\\orders",
+    "\\pages\\products"
   ],
-  "SelectedNode": "\\pages\\orders\\orders.html",
+  "SelectedNode": "\\pages\\notes\\notes.scss",
   "PreviewInSolutionExplorer": false
 }

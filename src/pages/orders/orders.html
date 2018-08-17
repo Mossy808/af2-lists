@@ -4,7 +4,7 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<!--<ion-header>
 
   <ion-navbar>
     <ion-buttons left>
@@ -20,6 +20,26 @@
     </ion-buttons>
   </ion-navbar>
 
+</ion-header>-->
+
+<ion-header class="blurred-box" style="height: 50px;background-color: #488aff7d;">
+
+  <ion-navbar style="height: 50px;padding-left: 0px; padding-right: 0px;padding-bottom: 0px;">
+    <ion-buttons left style="margin: 0;background-color: rgba(0, 0, 0, 0.25);margin-top: -5px;">
+      <button menuToggle style="width:50px;height:50px;background-color:transparent;">
+        <ion-icon name="menu" style="font-size: 2.2em;"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>Orders</ion-title>
+
+    <ion-buttons end style="margin: 0;background-color: rgba(0, 0, 0, 0.25);margin-top: -5px;">
+      <button ios-more style="width:50px;height:50px;background-color:transparent;" (tap)="presentPopover($event)">
+        <ion-icon name="ios-more" style="font-size: 2.2em;"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
 </ion-header>
 
 
@@ -27,37 +47,38 @@
   <ion-row style="height: 100%">
 
     <ion-col col-7>
-      <div>
-
-        <h2>
+      <div style="margin-bottom: 15px;border: 1px solid black;border-radius: 5px; margin-bottom: 15px;min-height: 170px;">
+        <h2 style="text-align: center;padding-bottom: 4px;border-bottom: 1px solid black;padding: 5px;">
           Categories
         </h2>
 
-        <div class="full-width" style="height: 120px;overflow: -webkit-paged-x;display: inline-flex;">
-          <button ion-button outline *ngFor="let product of products | async" style="width: 175px;display: inline-flex;" (click)="openPage(ordersPage)">
-            <span class="">Category</span>
+        <div class="full-width" style="overflow: -webkit-paged-x;display: inline-flex;padding: 7px 7px 0 7px;">
+          <button ion-button outline *ngFor="let category of categoriesSnapshotTop" (click)="selectCategory(category)" [style.background-color]="category.Colour" [style.color]="category.TextColour">
+            <span [ngClass]="{'selectedCategory' : category.Selected}" style="width: 90px;">{{category.CategoryName}}</span>
+          </button>
+        </div>
+
+        <div class="full-width" style="overflow: -webkit-paged-x;display: inline-flex;padding: 0 7px 7px 7px;">
+          <button ion-button outline *ngFor="let category of categoriesSnapshotBottom" (click)="selectCategory(category)" [style.background-color]="category.Colour" [style.color]="category.TextColour">
+            <span [ngClass]="{'selectedCategory' : category.Selected}" style="width: 90px;">{{category.CategoryName}}</span>
           </button>
         </div>
 
       </div>
 
-      <hr>
+      <div style="height: 80.5%;border: 1px solid black;border-radius: 5px;">
 
-      <div style="height: 75%">
-
-        <h2>
+        <h2 style="text-align: center;padding-bottom: 4px;border-bottom: 1px solid black;padding: 5px;">
           Products
         </h2>
 
-        <hr>
-
-        <div class="full-height" style="overflow: scroll;overflow-x: hidden;">
+        <div class="" style="overflow: scroll;overflow-x: hidden;padding: 7px;">
           <ion-row>
-            <ion-col col-3 *ngFor="let product of products | async">
-              <button ion-button outline class="dashboard-button" (click)="addToOrder(product)" style="width:100%">
+            <ion-col col-3 *ngFor="let product of productsSnapshot">
+              <button ion-button outline class="dashboard-button" (press)="productPress(product)" (click)="addToOrder(product)" style="width:100%" *ngIf="product.Show" [style.background-color]="product.Colour" [style.color]="product.TextColour">
                 <span class="dashboard-button-text">{{product.ProductCode}}</span>
-                <br/>
-                <span class="dashboard-button-text">{{product.ProductName}}</span>
+                <br />
+                <span class="dashboard-button-text-bottom">{{product.ProductName}}</span>
               </button>
             </ion-col>
           </ion-row>
@@ -68,84 +89,115 @@
 
     <!-- Order Reciept -->
     <ion-col col-5>
-      <div style="width:100%;height:70%;border: 1px solid black">
+      <div style="width:100%;height:70%; border: 1px solid black;border-radius: 5px;">
         <div style="height:6%;border-bottom:1px black solid">
-            <h3 style="text-align: center;padding-top: 6px;">Orders List</h3>
+          <h3 style="text-align: center;padding-top: 6px;">Orders List</h3>
         </div>
-        <ion-list style="overflow-y: scroll;height: 88%;margin: 0px;">
-          <ion-item *ngFor="let product of currentOrderList.Products">
+        
+        <ion-list style="overflow-y: scroll;height: 88%;margin: 0px;width: 99%;overflow-x: hidden;" [ngClass]="{'discountShowing' : discount}">
+          <ion-item-sliding #item *ngFor="let product of currentOrderList.Products" style="margin: 0 1px;">
+            <ion-item style="padding-left: 0px;">
+              <ion-row>
 
-            <ion-row>
+                <ion-col col-8 style="padding-left: 10px;">
+                  <span style="display: inline-flex">{{product.ProductCode}}</span>
+                </ion-col>
 
-              <ion-col col-7>
-                <span style="display: inline-flex">{{product.ProductCode}}</span>
-              </ion-col>
+                <ion-col col-4 style="text-align: right;">
+                  <span style="display: inline-flex;text-align: right"><strong>{{product.Quantity}}</strong></span>
+                </ion-col>
 
-              <ion-col col-4>
-                <span style="display: inline-flex">{{product.Quantity}}</span>
-              </ion-col>
+                <ion-col col-8 style="padding-left: 10px;">
+                  <span style="display: inline-flex">{{product.ProductName}}</span>
+                </ion-col>
 
-              <ion-col col-1>
-                <span style="display: inline-flex"></span>
-              </ion-col>
+                <ion-col col-4 style="text-align: right;">
+                  <span style="display: inline-flex">{{product.Price | currency:'£'}}</span>
+                </ion-col>
 
-              <ion-col col-7>
-                <span style="display: inline-flex">{{product.ProductName}}</span>
-              </ion-col>
+              </ion-row>
+            </ion-item>
 
-              <ion-col col-4>
-                <span style="display: inline-flex">{{product.Price | currency:'£'}}</span>
-              </ion-col>
+            <ion-item-options side="left">
+              <button ion-button (click)="productPress(product, item)">
+                <ion-icon name="add" style="font-size: 2em;"></ion-icon>
+              </button>
+            </ion-item-options>
 
-              <ion-col col-1>
-                <ion-buttons end style="display: inline-flex;width: 10%">
-                  <button ios-close style="width:100%;background-color:transparent;" (tap)="presentPopover($event)">
-                    <ion-icon name="ios-close" style=""></ion-icon>
-                  </button>
-                </ion-buttons>
-              </ion-col>
+            <ion-item-options side="right">
+              <button ion-button (click)="removeItem(product.Id)" color="danger">
+                <ion-icon name="trash" style="font-size: 2em;"></ion-icon>
+              </button>
+            </ion-item-options>
 
-            </ion-row>
-
-          </ion-item>
+          </ion-item-sliding>
         </ion-list>
-        <div style="height:6%;border-top:1px black solid">
+
+        <div style="height:6%;border-top:1px black solid;padding-top: 5px;background-color: blanchedalmond;" *ngIf="discount">
+
+          <ion-row>
+            <ion-col col-8>
+              <h3><strong>Discount</strong></h3>
+            </ion-col>
+            <ion-col col-4>
+              <h3 *ngIf="discount?.discountType === 'amount'" style="text-align: right">
+                <strong>{{discount?.discountAmount | currency:'£'}}</strong>
+              </h3>
+              <h3 *ngIf="discount?.discountType === 'percentage'" style="text-align: right">
+                <strong>{{discount?.discountAmount}}%</strong>
+              </h3>
+            </ion-col>
+          </ion-row>
+
+        </div>
+        
+        <div style="height:6%;border-top:1px black solid;padding-top: 5px;">
+
           <ion-row>
             <ion-col col-8>
               <h3>{{totalItems ? totalItems : 0}} Items</h3>
             </ion-col>
             <ion-col col-4>
-              <h3>{{totalPrice ? (totalPrice | currency:'£') : (0.00 | currency:'£')}}</h3>
+              <h3 style="text-align: right">{{totalPrice ? (totalPrice | currency:'£') : (0.00 | currency:'£')}}</h3>
             </ion-col>
           </ion-row>
+
         </div>
+
       </div>
+
       <ion-row>
-        <ion-col col-6>
-          <button ion-button outline class="" style="width:100%" (click)="openPage(ordersPage)">
-            <span class="dashboard-button-text">Clear Last</span>
+        <ion-col col-6 class="no-padding-left">
+          <button ion-button outline class="" style="width: 100%;background-color: orangered;color: white;" (click)="clearLast()">
+            <span>Clear Last</span>
           </button>
         </ion-col>
-        <ion-col col-6>
-          <button ion-button outline class="" style="width:100%" (click)="clearAll()">
-            <span class="dashboard-button-text">Clear All</span>
+        <ion-col col-6 class="no-padding-left">
+          <button ion-button outline class="" style="width: 100%;background-color: red;color: white;" (click)="clearAll()">
+            <span>Clear All</span>
           </button>
         </ion-col>
-        <ion-col col-12>
-          <button ion-button outline class="" style="width:100%" (click)="openPage(ordersPage)">
-            <span class="dashboard-button-text">Add Discount</span>
+        <ion-col col-12 class="no-padding-left">
+          <button ion-button outline class="" (click)="addDiscount()" style="width: 100%;background-color: gold;color: gray;">
+            <span>Add Discount</span>
           </button>
         </ion-col>
-        <ion-col col-6>
-          <button ion-button outline class="dashboard-button" (click)="completeOrder()">
+        <ion-col col-6 class="no-padding-left">
+          <button ion-button outline class="dashboard-button" (click)="completeOrder()" style="background-color: #f5b43d;color:white">
             <span class="dashboard-button-text">Refund</span>
-            <ion-icon name="ios-check" class="dashboard-button-icon"></ion-icon>
+            <br />
+            <span class="dashboard-button-text-bottom">
+              <ion-icon name="cash" style="font-size: 3em;"></ion-icon>
+            </span>
           </button>
         </ion-col>
-        <ion-col col-6>
-          <button ion-button outline class="dashboard-button" (click)="completeOrder()">
-            <span class="dashboard-button-text">Complete</span>
-            <ion-icon name="ios-check" class="dashboard-button-icon"></ion-icon>
+        <ion-col col-6 class="no-padding-left">
+          <button ion-button outline class="dashboard-button" (click)="completeOrder()" style="background-color: #32db64;color:white">
+            <span class="dashboard-button-text" style="font-size: 1.3em;">Complete</span>
+            <br />
+            <span class="dashboard-button-text-bottom">
+              <ion-icon name="checkmark-circle" style="font-size: 3em;"></ion-icon>
+            </span>
           </button>
         </ion-col>
       </ion-row>

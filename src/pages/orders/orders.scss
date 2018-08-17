@@ -1,13 +1,21 @@
 page-orders {
     .dashboard-button {
         width: 100%;
-        position:relative;
-        padding-top:100%;
+        position: relative;
+        padding-top: 100%;
     }
 
     .dashboard-button-text {
         position: absolute;
-        top: 30%;
+        top: 20%;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+
+    .dashboard-button-text-bottom {
+        position: absolute;
+        top: 45%;
         left: 0;
         bottom: 0;
         right: 0;
@@ -20,5 +28,13 @@ page-orders {
         bottom: 0;
         right: 0;
         font-size: 2em;
+    }
+
+    .selectedCategory {
+        background-color: blue;
+    }
+
+    .discountShowing {
+        height: 82% !important;
     }
 }

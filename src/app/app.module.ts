@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { MomentModule } from 'angular2-moment';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -26,6 +27,7 @@ import { ProductModalPage } from '../pages/product-modal/product-modal';
 import { CategoryModalPage } from '../pages/category-modal/category-modal';
 import { CategoryAddProductsModalPage } from '../pages/category-add-products-modal/category-add-products-modal';
 import { NoteAddModalPage } from '../pages/note-add-modal/note-add-modal';
+import { OrdersKeypadModalPage } from '../pages/order-keypad/order-keypad';
 
 import { PopoverPage } from '../pages/popover/popover';
 
@@ -36,12 +38,12 @@ import { AuthProvider } from '../providers/auth/auth';
 
 // AF2 Settings
 export const firebaseConfig = {
-  apiKey: "AIzaSyDnerRdd14a5oJ_DJ1XsodL897SHnhv6Ec",
-  authDomain: "ouproject-69319.firebaseapp.com",
-  databaseURL: "https://ouproject-69319.firebaseio.com",
-  projectId: "ouproject-69319",
-  storageBucket: "ouproject-69319.appspot.com",
-  messagingSenderId: "988473869022"
+  apiKey: "AIzaSyBRaLZKmTlEeHVNzg2t_Bscg_jwx4-qIbo",
+  authDomain: "epos-project-9eeb8.firebaseapp.com",
+  databaseURL: "https://epos-project-9eeb8.firebaseio.com",
+  projectId: "epos-project-9eeb8",
+  storageBucket: "epos-project-9eeb8.appspot.com",
+  messagingSenderId: "318890124720"
 };
 
 AngularFireModule.initializeApp(firebaseConfig)
@@ -67,7 +69,8 @@ AngularFireModule.initializeApp(firebaseConfig)
     ProductModalPage,
     CategoryModalPage,
     CategoryAddProductsModalPage,
-    NoteAddModalPage
+    NoteAddModalPage,
+    OrdersKeypadModalPage
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,8 @@ AngularFireModule.initializeApp(firebaseConfig)
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     IonicStorageModule.forRoot(),
-    ColorPickerModule
+    ColorPickerModule,
+    MomentModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -98,7 +102,8 @@ AngularFireModule.initializeApp(firebaseConfig)
     ProductModalPage,
     CategoryModalPage,
     CategoryAddProductsModalPage,
-    NoteAddModalPage
+    NoteAddModalPage,
+    OrdersKeypadModalPage
   ],
   providers: [
     StatusBar,

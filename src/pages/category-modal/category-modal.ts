@@ -59,6 +59,7 @@ export class CategoryModalPage {
       DateAdded: dateAdded,
       Active: this.category.Active,
       Colour: this.category.Colour,
+      TextColour: this.category.TextColour
     });
 
     let toast = this.toastCtrl.create({

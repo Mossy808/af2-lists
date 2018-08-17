@@ -7,7 +7,7 @@
 
   <ion-content>
     <ion-list>
-      <button menuClose class="text-align-center full-width" style="background-color: transparent;margin: 10px 0px;" *ngFor="let page of pages" (click)="openPage(p)">
+      <button menuClose class="text-align-center full-width" style="background-color: transparent;margin: 10px 0px;" *ngFor="let page of pages" (click)="openPage(page)">
         <span style="display:block;padding-bottom: 10px;border-bottom: 1px dashed black;margin: 0px 8%;">
             <ion-icon name="ios-cart" class="" style="font-size: 2em;display: block"></ion-icon>
             <span style="font-size: 2em">{{page.title}}</span>

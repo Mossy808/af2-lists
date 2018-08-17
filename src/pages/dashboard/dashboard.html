@@ -1,20 +1,23 @@
 <!--
-  Generated template for the DashboardPage page.
+Generated template for the DashboardPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
+See http://ionicframework.com/docs/components/#navigation for more info on
+Ionic pages and navigation.
 -->
-<ion-header>
 
-  <ion-navbar>
-    <ion-buttons left>
-      <button menuToggle style="width:34px;height:34px;background-color:transparent;">
+<ion-header class="blurred-box" style="height: 50px;background-color: #488aff7d;">
+
+  <ion-navbar style="height: 50px;padding-left: 0px; padding-right: 0px;padding-bottom: 0px;">
+    <ion-buttons left style="margin: 0;background-color: rgba(0, 0, 0, 0.25);margin-top: -5px;">
+      <button menuToggle style="width:50px;height:50px;background-color:transparent;">
         <ion-icon name="menu" style="font-size: 2.2em;"></ion-icon>
       </button>
     </ion-buttons>
+
     <ion-title>Dashboard</ion-title>
-    <ion-buttons end>
-      <button ios-more style="width:34px;height:34px;background-color:transparent;" (tap)="presentPopover($event)">
+
+    <ion-buttons end style="margin: 0;background-color: rgba(0, 0, 0, 0.25);margin-top: -5px;">
+      <button ios-more style="width:50px;height:50px;background-color:transparent;" (tap)="presentPopover($event)">
         <ion-icon name="ios-more" style="font-size: 2.2em;"></ion-icon>
       </button>
     </ion-buttons>
@@ -26,76 +29,98 @@
 <ion-content padding>
   <ion-grid class="full-height">
 
+    <!--First Dashboard Row-->
     <ion-row style="height: 25%;">
+      <!--Welcome tab-->
       <ion-col col-9>
-        <div class="" (click)="openPage(ordersPage)" style="width: 100%;height: 100%;padding:10px;border: 1px solid blue;box-shadow: 0 8px 6px -6px black;background-color: darkgrey;">
+        <div class="" (click)="openPage(ordersPage)" style="width: 100%; height: 100%; padding: 10px; border: 1px solid blue; box-shadow: 0 8px 6px -6px black; background-color: darkgrey;background-color: #1853d8d4;color: white;border: #1853d8d4;">
           <br />
-          <h1 style="float:left;width:100%;">Welcome {{displayName}}</h1>
+          <h1 style="float: left; width: 100%;">Welcome {{displayName}}</h1>
           <br />
-          <h2 style="float:left;width:100%;">{{date | date: 'dd/MM/yyyy'}}</h2>
+          <h2 style="float: left; width: 100%;">{{date | date: 'dd/MM/yyyy'}}</h2>
           <br />
-          <h2 style="float:left;width:100%;">Time</h2>
+          <h2 style="float: left; width: 100%;">Time</h2>
         </div>
       </ion-col>
+
+      <!--Settings Tab-->
       <ion-col col-3>
-        <button class="" (click)="openPage(settingsPage)" style="width: 100%;height: 100%;padding:0;border: 1px solid blue;box-shadow: 0 8px 6px -6px black;background-color: cornflowerblue;color: white;">
+        <button class="" (click)="openPage(settingsPage)" style="width: 100%; height: 100%; padding: 0; border: 1px solid blue; box-shadow: 0 8px 6px -6px black; background-color: #6495edd1; color: white; border: cornflowerblue;">
           <ion-icon name="ios-cog" class="" style="font-size: 5em;"></ion-icon>
           <footer class="dashboard-btn-label" style="color: white">Settings</footer>
         </button>
       </ion-col>
     </ion-row>
 
+    <!--Second Dashboard Row-->
     <ion-row style="height: 25%;">
+      
+
       <ion-col col-6>
-        <button class="" (click)="openPage(ordersPage)" style="width: 100%;height: 100%;padding:0;border: 1px solid blue;box-shadow: 0 8px 6px -6px black;">
+        <button class="" (click)="openPage(ordersPage)" style="width: 100%;height: 100%;padding: 0;border: 1px solid blue;box-shadow: 0 8px 6px -6px black;background-color: #18d888d4;color: white;border: #18d888d4;">
           <!-- <span class="" style="display: list-item;">Orders</span> -->
           <ion-icon name="ios-cart" class="" style="font-size: 5em;"></ion-icon>
-          <footer class="dashboard-btn-label">Orders</footer>
+          <footer class="dashboard-btn-label" style="color: white">Orders</footer>
         </button>
       </ion-col>
+      
+
       <ion-col col-6>
-        <button class="" (click)="openPage(stockPage)" style="width: 100%;height: 100%;padding:0;border: 1px solid blue;box-shadow: 0 8px 6px -6px black;">
+        <button class="" (click)="openPage(stockPage)" style="width: 100%; height: 100%; padding: 0; border: 1px solid blue; box-shadow: 0 8px 6px -6px black;">
           <!-- <span class="" style="display: list-item;">Stock</span> -->
           <ion-icon name="ios-cube" class="" style="font-size: 5em;"></ion-icon>
           <footer class="dashboard-btn-label">Stock</footer>
         </button>
       </ion-col>
+
     </ion-row>
 
+    <!--Third Dashboard Row-->
     <ion-row style="height: 25%;">
+      
       <ion-col col-4>
-        <button class="" (click)="openPage(auditPage)" style="width: 100%;height: 100%;padding:0;border: 1px solid blue;box-shadow: 0 8px 6px -6px black;">
+        <button class="" (click)="openPage(auditPage)" style="width: 100%; height: 100%; padding: 0; border: 1px solid blue; box-shadow: 0 8px 6px -6px black;background-color: #ea8d00bd;color: white;border: #ea8d00bd;">
           <!-- <span class="" style="display: list-item;">Audits</span> -->
           <ion-icon name="ios-clipboard" class="" style="font-size: 5em;"></ion-icon>
-          <footer class="dashboard-btn-label">Audits</footer>
+          <footer class="dashboard-btn-label" style="color: white;">Audits</footer>
         </button>
       </ion-col>
+      
+
       <ion-col col-4>
-        <button class="" (click)="openPage(historyPage)" style="width: 100%;height: 100%;padding:0;border: 1px solid blue;box-shadow: 0 8px 6px -6px black;">
+        <button class="" (click)="openPage(historyPage)" style="width: 100%; height: 100%; padding: 0; border: 1px solid blue; box-shadow: 0 8px 6px -6px black;">
           <!-- <span class="" style="display: list-item;">History</span> -->
           <ion-icon name="ios-bookmarks" class="" style="font-size: 5em;"></ion-icon>
           <footer class="dashboard-btn-label">History</footer>
         </button>
       </ion-col>
+      
+
       <ion-col col-4>
-        <button class="" (click)="openPage(notesPage)" style="width: 100%;height: 100%;padding:0;border: 1px solid blue;box-shadow: 0 8px 6px -6px black;">
+        <button class="" (click)="openPage(notesPage)" style="width: 100%; height: 100%; padding: 0; border: 1px solid blue; box-shadow: 0 8px 6px -6px black;">
           <!-- <span class="" style="display: list-item;">Notes</span> -->
           <ion-icon name="ios-chatbubbles" class="" style="font-size: 5em;"></ion-icon>
           <footer class="dashboard-btn-label">Notes</footer>
         </button>
       </ion-col>
+
     </ion-row>
 
+    <!--Forth Dashboard Row-->
     <ion-row style="height: 25%;">
+      
+
       <ion-col col-6>
-        <button class="" (click)="openPage(uploadPage)" style="width: 100%;height: 100%;padding:0;border: 1px solid blue;box-shadow: 0 8px 6px -6px black;">
+        <button class="" (click)="openPage(uploadPage)" style="width: 100%; height: 100%; padding: 0; border: 1px solid blue; box-shadow: 0 8px 6px -6px black;">
           <!-- <span class="" style="display: list-item;">Upload</span> -->
           <ion-icon name="ios-cloud" class="" style="font-size: 5em;"></ion-icon>
           <footer class="dashboard-btn-label">Upload</footer>
         </button>
       </ion-col>
+      
+      <!--About Page Button-->
       <ion-col col-6>
-        <button class="" (click)="openPage(aboutPage)" style="width: 100%;height: 100%;padding:0;border: 1px solid blue;box-shadow: 0 8px 6px -6px black;">
+        <button class="" (click)="openPage(aboutPage)" style="width: 100%; height: 100%; padding: 0; border: 1px solid blue; box-shadow: 0 8px 6px -6px black;">
           <!-- <span class="" style="display: list-item;">About</span> -->
           <ion-icon name="ios-information-circle" class="" style="font-size: 5em;"></ion-icon>
           <footer class="dashboard-btn-label">About</footer>
@@ -106,5 +131,3 @@
 
   </ion-grid>
 </ion-content>
-
-<!-- dashboard-button -->

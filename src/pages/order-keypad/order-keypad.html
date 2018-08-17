@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-navbar style="border-bottom: 1px solid lightblue;">
+    <ion-title *ngIf="!product">Add Discount</ion-title>
+    <ion-title *ngIf="product">{{product.ProductCode}} - {{product.ProductName}}</ion-title>
+    <ion-buttons end>
+      <button ion-button block (click)="closeModal()">Close</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  
+  <div class="full-width" style="display: inline-flex" *ngIf="!product">
+    <button style="width: 15%" (click)="selectAmount()" [ngClass]="{'selectedDiscount' : discountType === 'amount'}">P</button>
+    <button style="width: 15%" (click)="selectPercenatge()" [ngClass]="{'selectedDiscount' : discountType === 'percentage'}">%</button>
+    <input style="width: 70%; font-size: 2.5em; text-align: right;" [(ngModel)]="discountAmount"/>
+  </div>
+  
+  <div class="full-width" style="display: inline-flex" *ngIf="product">
+    <input style="width: 100%; font-size: 2.5em; text-align: right;" [(ngModel)]="product.Quantity"/>
+  </div>
+
+  <hr/>
+
+  <ion-grid style="padding: 5px 0;">
+
+    <ion-row>
+      <ion-col col-4 class="no-padding-left">
+        <button class="keyboard-btn">
+          1
+        </button>
+      </ion-col>
+      <ion-col col-4 class="no-padding-left no-padding-right">
+        <button class="keyboard-btn">
+          2
+        </button>
+      </ion-col>
+      <ion-col col-4 class="no-padding-right">
+        <button class="keyboard-btn">
+          3
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4 class="no-padding-left">
+        <button class="keyboard-btn">
+          4
+        </button>
+      </ion-col>
+      <ion-col col-4 class="no-padding-left no-padding-right">
+        <button class="keyboard-btn">
+          5
+        </button>
+      </ion-col>
+      <ion-col col-4 class="no-padding-right">
+        <button class="keyboard-btn">
+          6
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4 class="no-padding-left">
+        <button class="keyboard-btn">
+          7
+        </button>
+      </ion-col>
+      <ion-col col-4 class="no-padding-left no-padding-right">
+        <button class="keyboard-btn">
+          8
+        </button>
+      </ion-col>
+      <ion-col col-4 class="no-padding-right">
+        <button class="keyboard-btn">
+          9
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4 class="no-padding-left">
+        <button class="keyboard-btn">
+          <ion-icon name="checkmark-circle" style="font-size: 2em" *ngIf="!product" (click)="applyDiscount()"></ion-icon>
+          <ion-icon name="checkmark-circle" style="font-size: 2em" *ngIf="product" (click)="addAmendProduct()"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-4 class="no-padding-left no-padding-right">
+        <button class="keyboard-btn">
+          0
+        </button>
+      </ion-col>
+      <ion-col col-4 class="no-padding-right">
+        <button class="keyboard-btn">
+          Back
+        </button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>
+
+<!--<ion-footer>
+  <ion-buttons class="full-width" style="display:inline-flex">
+    <button ion-button block (click)="saveCategory()" class="half-width" style="width:50%;margin: 5px;">Add</button>
+  </ion-buttons>
+</ion-footer>-->

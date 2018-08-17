@@ -19,32 +19,73 @@
       </button>
     </ion-buttons>
   </ion-navbar>
+  
+  <div class="bar bar-subheader">
+    <ion-row style="background-color: #f8f8f8;">
+      <ion-col col-3 class="">
+        <ion-searchbar (ionInput)="getItems($event)" style="background-color: #f8f8f8;"></ion-searchbar>
+      </ion-col>
+      <ion-col col-3 class="">
+        <ion-item>
+          <ion-label>Important</ion-label>
+          <ion-toggle checked="false"></ion-toggle>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3 class="">
+        <ion-item>
+          <ion-label>To Do</ion-label>
+          <ion-toggle checked="false"></ion-toggle>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3 class="">
+        <button ion-button outline class="full-width no-margin" style="border-radius: 0px;" (click)="openAddNoteModal()" [ngClass]="{'active-navbar-tab' : (showProducts), 'inactive-navbar-tab' : (!showProducts)}">
+          <span class="">Add Note</span>
+        </button>
+      </ion-col>
+    </ion-row>
+  </div>
 
 </ion-header>
 
-
 <ion-content padding>
-  <button ion-button outline class="full-width no-margin" style="border-radius: 0px;" (click)="openAddNoteModal()" [ngClass]="{'active-navbar-tab' : (showProducts), 'inactive-navbar-tab' : (!showProducts)}">
-    <span class="">Add Note</span>
-  </button>
-
+  
   <ion-grid>
-    <ion-row *ngFor="let note of notes | async" style="border-bottom: 1px solid gray;">
-      <ion-col col-7 class="product-table-text-padding text-align-left">
-        {{note.Title}}
-      </ion-col>
-      <ion-col col-3 class="product-table-text-padding">
-        {{note.User}}
-      </ion-col>
-      <ion-col col-1 class="product-table-text-padding">
-        {{note.ToDo}}
-      </ion-col>
-      <ion-col col-1 class="product-table-text-padding">
-        {{note.Important}}
-      </ion-col>
-      <ion-col col-12 class="product-table-text-padding text-align-right">
-        {{note.Note}}
-      </ion-col>
+    <ion-row *ngFor="let note of notes | async">
+      <ion-card [ngClass]="{'noteImportantToDo': note.$Important && note.$ToDo, 'noteImportant': note.$Important, 'noteToDo': note.$ToDo, 'noteComplete': note.$Complete}">
+        <ion-card-header>
+          <strong>{{note.Title}} {{note}}</strong>
+        </ion-card-header>
+
+        <ion-card-content>
+          {{note.Note}}
+        </ion-card-content>
+
+        <ion-row>
+          
+          <ion-col col-2>
+            <button ion-button icon-start clear small>
+              <ion-icon name="ios-contact"></ion-icon>
+              <div>{{note.User}}</div>
+            </button>
+          </ion-col>
+
+          <ion-col col-3 center text-center>
+            <button ion-button icon-start clear small>
+              <ion-icon name="ios-calendar"></ion-icon>
+              <div>{{note.DateCreated}}</div>
+            </button>
+          </ion-col>
+
+          <ion-col col-7>
+            <button ion-button icon-start clear small style="float:right">
+              <ion-icon name="ios-trash"></ion-icon>
+              <div>Delete Note</div>
+            </button>
+          </ion-col>
+
+        </ion-row>
+
+      </ion-card>
     </ion-row>
   </ion-grid>
 
