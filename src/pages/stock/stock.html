@@ -24,5 +24,44 @@
 </ion-header>
 
 <ion-content padding>
+  <div>
+    <div style="display:inline-flex; width: 100%;margin-bottom: 10px;">
+      <div style="display:inline-flex;height: 45px;width:75%;margin: 0.4rem 0.2rem;">
+        <ion-input type="number" placeholder="Search Products" left style="border: 1px black solid;border-radius: 10px 0px 0px 10px;"></ion-input>
+        <ion-icon name="ios-search" class="searchInputAddOn"></ion-icon>
+      </div>
+    </div>
+    <ion-grid>
+      
+      <ion-row style="border-top: 1px solid gray; border-bottom: 1px solid gray; font-size: 1.2em; background-color: lightgray; font-weight: bold;">
+        <ion-col col-2>
+          Code
+        </ion-col>
+        <ion-col col-5>
+          Name
+        </ion-col>
+        <ion-col col-3 class="text-align-center">
+          Warning
+        </ion-col>
+        <ion-col col-2 class="text-align-center">
+          Level
+        </ion-col>
+      </ion-row>
 
+      <ion-row *ngFor="let product of productsSnapshot" style="border-bottom: 1px solid gray;">
+        <ion-col col-2 class="product-table-text-padding">
+          {{product.ProductCode}}
+        </ion-col>
+        <ion-col col-5 class="product-table-text-padding">
+          {{product.ProductName}}
+        </ion-col>
+        <ion-col col-3 class="product-table-text-padding">
+
+        </ion-col>
+        <ion-col col-2>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

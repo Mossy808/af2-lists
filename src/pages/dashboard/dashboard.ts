@@ -10,6 +10,7 @@ import { NotesPage } from '../../pages/notes/notes';
 import { UploadPage } from '../../pages/upload/upload';
 import { AboutPage } from '../../pages/about/about';
 import { SettingsPage } from '../../pages/settings/settings';
+import { ProductsPage } from '../../pages/products/products';
 
 import { PopoverPage } from '../../pages/popover/popover';
 import { Time } from '../../../node_modules/@angular/common';
@@ -36,6 +37,7 @@ export class DashboardPage {
   uploadPage: any;
   aboutPage: any;
   settingsPage: any;
+  productsPage: any;
   displayName: string;
   date: Date = new Date();
   time: Time;
@@ -54,6 +56,7 @@ export class DashboardPage {
     this.uploadPage = UploadPage;
     this.aboutPage = AboutPage;
     this.settingsPage = SettingsPage;
+    this.productsPage = ProductsPage;
 
     storage.get('email').then((email) => {
       this.displayName = email;;

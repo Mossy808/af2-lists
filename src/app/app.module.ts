@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { MomentModule } from 'angular2-moment';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -109,7 +110,8 @@ AngularFireModule.initializeApp(firebaseConfig)
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    BarcodeScanner
   ]
 })
 export class AppModule {}

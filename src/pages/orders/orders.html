@@ -47,37 +47,68 @@
   <ion-row style="height: 100%">
 
     <ion-col col-7>
-      <div style="margin-bottom: 15px;border: 1px solid black;border-radius: 5px; margin-bottom: 15px;min-height: 170px;">
-        <h2 style="text-align: center;padding-bottom: 4px;border-bottom: 1px solid black;padding: 5px;">
-          Categories
-        </h2>
+      <div style="border: 1px solid black; border-radius: 5px; margin-bottom: 15px; min-height: 170px;">
 
-        <div class="full-width" style="overflow: -webkit-paged-x;display: inline-flex;padding: 7px 7px 0 7px;">
-          <button ion-button outline *ngFor="let category of categoriesSnapshotTop" (click)="selectCategory(category)" [style.background-color]="category.Colour" [style.color]="category.TextColour">
-            <span [ngClass]="{'selectedCategory' : category.Selected}" style="width: 90px;">{{category.CategoryName}}</span>
-          </button>
-        </div>
+        <ion-row style="height: 38px;margin-bottom: 4px;border-bottom: 1px solid black;">
+          
+          <ion-col col-1>
+            <button ion-button icon-only style="height: 34px;width: 34px;margin: -4px 0 0 0;background-color: transparent;color: black;display: contents;" (click)="quickAddCategoryModal()">
+              <ion-icon name="add"></ion-icon>
+            </button>
+          </ion-col>
 
-        <div class="full-width" style="overflow: -webkit-paged-x;display: inline-flex;padding: 0 7px 7px 7px;">
-          <button ion-button outline *ngFor="let category of categoriesSnapshotBottom" (click)="selectCategory(category)" [style.background-color]="category.Colour" [style.color]="category.TextColour">
-            <span [ngClass]="{'selectedCategory' : category.Selected}" style="width: 90px;">{{category.CategoryName}}</span>
-          </button>
-        </div>
+          <ion-col col-10>
+            <h2 style="text-align: center; padding-bottom: 4px; padding: 5px;">
+              Categories
+            </h2>
+          </ion-col>
+          
+          </ion-row>
+
+          <div class="full-width" style="overflow: -webkit-paged-x; display: inline-flex; padding: 7px 7px 0 7px;">
+            <button ion-button outline *ngFor="let category of categoriesSnapshotTop" (click)="selectCategory(category)" [style.background-color]="category.Colour" [style.color]="category.TextColour">
+              <span [ngClass]="{'selectedCategory' : category.Selected}" style="width: 90px;">{{category.CategoryName}}</span>
+            </button>
+          </div>
+
+          <div class="full-width" style="overflow: -webkit-paged-x; display: inline-flex; padding: 0 7px 7px 7px;">
+            <button ion-button outline *ngFor="let category of categoriesSnapshotBottom" (click)="selectCategory(category)" [style.background-color]="category.Colour" [style.color]="category.TextColour">
+              <span [ngClass]="{'selectedCategory' : category.Selected}" style="width: 90px;">{{category.CategoryName}}</span>
+            </button>
+          </div>
 
       </div>
+        
+      <div style="height: 80.5%; margin-bottom: 15px; border: 1px solid black; border-radius: 5px; margin-bottom: 15px; min-height: 170px;">
 
-      <div style="height: 80.5%;border: 1px solid black;border-radius: 5px;">
+        <ion-row style="height: 38px;margin-bottom: 4px;border-bottom: 1px solid black;">
 
-        <h2 style="text-align: center;padding-bottom: 4px;border-bottom: 1px solid black;padding: 5px;">
-          Products
-        </h2>
+          <ion-col col-1>
+            <button ion-button icon-only style="height: 34px;width: 34px;margin: -4px 0 0 0;background-color: transparent;color: black;display: contents;" (click)="quickAddProductModal()">
+              <ion-icon name="add"></ion-icon>
+            </button>
+          </ion-col>
 
-        <div class="" style="overflow: scroll;overflow-x: hidden;padding: 7px;">
+          <ion-col col-10>
+            <h2 style="text-align: center; padding-bottom: 4px; padding: 5px;">
+              Products
+            </h2>
+          </ion-col>
+
+          <ion-col col-1>
+            <button ion-button icon-only style="height: 34px;width: 34px;margin: -4px 0 0 0;background-color: transparent;color: black;display: contents;">
+              <ion-icon name="barcode"></ion-icon>
+            </button>
+          </ion-col>
+
+        </ion-row>
+
+        <div class="" style="overflow: scroll; overflow-x: hidden; padding: 7px;">
           <ion-row>
             <ion-col col-3 *ngFor="let product of productsSnapshot">
-              <button ion-button outline class="dashboard-button" (press)="productPress(product)" (click)="addToOrder(product)" style="width:100%" *ngIf="product.Show" [style.background-color]="product.Colour" [style.color]="product.TextColour">
+              <button ion-button outline class="dashboard-button" (press)="productPress(product)" (click)="addToOrder(product)" style="width: 100%" *ngIf="product.Show" [style.background-color]="product.Colour" [style.color]="product.TextColour">
                 <span class="dashboard-button-text">{{product.ProductCode}}</span>
-                <br />
+                <br/>
                 <span class="dashboard-button-text-bottom">{{product.ProductName}}</span>
               </button>
             </ion-col>
@@ -89,12 +120,25 @@
 
     <!-- Order Reciept -->
     <ion-col col-5>
-      <div style="width:100%;height:70%; border: 1px solid black;border-radius: 5px;">
-        <div style="height:6%;border-bottom:1px black solid">
-          <h3 style="text-align: center;padding-top: 6px;">Orders List</h3>
-        </div>
+      <div style="width: 100%; height: 70%; border: 1px solid black; border-radius: 5px;">
         
-        <ion-list style="overflow-y: scroll;height: 88%;margin: 0px;width: 99%;overflow-x: hidden;" [ngClass]="{'discountShowing' : discount}">
+        <ion-row style="height: 38px;margin-bottom: 4px;border-bottom: 1px solid black;">
+          
+          <ion-col col-1>
+            <button ion-button icon-only style="height: 34px;width: 34px;margin: -4px 0 0 0;background-color: transparent;color: black;display: contents;">
+              <ion-icon name="add"></ion-icon>
+            </button>
+          </ion-col>
+
+          <ion-col col-10>
+            <h2 style="text-align: center; padding-bottom: 4px; padding: 5px;">
+              Orders List
+            </h2>
+          </ion-col>
+          
+        </ion-row>
+
+        <ion-list style="overflow-y: scroll; height: 88%; margin: 0px; width: 99%; overflow-x: hidden;" [ngClass]="{'discountShowing' : discount}">
           <ion-item-sliding #item *ngFor="let product of currentOrderList.Products" style="margin: 0 1px;">
             <ion-item style="padding-left: 0px;">
               <ion-row>
@@ -104,7 +148,7 @@
                 </ion-col>
 
                 <ion-col col-4 style="text-align: right;">
-                  <span style="display: inline-flex;text-align: right"><strong>{{product.Quantity}}</strong></span>
+                  <span style="display: inline-flex; text-align: right"><strong>{{product.Quantity}}</strong></span>
                 </ion-col>
 
                 <ion-col col-8 style="padding-left: 10px;">
@@ -133,11 +177,17 @@
           </ion-item-sliding>
         </ion-list>
 
-        <div style="height:6%;border-top:1px black solid;padding-top: 5px;background-color: blanchedalmond;" *ngIf="discount">
+        <div style="height: 6%; border-top: 1px black solid; padding-top: 5px; background-color: blanchedalmond;" *ngIf="discount">
 
           <ion-row>
-            <ion-col col-8>
-              <h3><strong>Discount</strong></h3>
+            <ion-col col-1>
+              <ion-icon name="close-circle-outline" *ngIf="!discount.pinned" style="color: red;margin-top: 2px;" (click)="discount.pinned = true"></ion-icon>
+              <ion-icon name="checkmark-circle" *ngIf="discount.pinned" style="color: green;margin-top: 2px;" (click)="discount.pinned = false"></ion-icon>
+            </ion-col>
+            <ion-col col-7>
+              <h3>
+                <strong (click)="discount.pinned = !discount.pinned ">Discount</strong>
+              </h3>
             </ion-col>
             <ion-col col-4>
               <h3 *ngIf="discount?.discountType === 'amount'" style="text-align: right">
@@ -150,8 +200,8 @@
           </ion-row>
 
         </div>
-        
-        <div style="height:6%;border-top:1px black solid;padding-top: 5px;">
+
+        <div style="height: 6%; border-top: 1px black solid; padding-top: 5px;">
 
           <ion-row>
             <ion-col col-8>
@@ -169,22 +219,22 @@
       <ion-row>
         <ion-col col-6 class="no-padding-left">
           <button ion-button outline class="" style="width: 100%;background-color: orangered;color: white;" (click)="clearLast()">
-            <span>Clear Last</span>
+            <span style="font-size: 1.3em;">Clear Last</span>
           </button>
         </ion-col>
         <ion-col col-6 class="no-padding-left">
           <button ion-button outline class="" style="width: 100%;background-color: red;color: white;" (click)="clearAll()">
-            <span>Clear All</span>
+            <span style="font-size: 1.3em;">Clear All</span>
           </button>
         </ion-col>
         <ion-col col-12 class="no-padding-left">
           <button ion-button outline class="" (click)="addDiscount()" style="width: 100%;background-color: gold;color: gray;">
-            <span>Add Discount</span>
+            <span style="font-size: 1.3em;">Add Discount</span>
           </button>
         </ion-col>
         <ion-col col-6 class="no-padding-left">
           <button ion-button outline class="dashboard-button" (click)="completeOrder()" style="background-color: #f5b43d;color:white">
-            <span class="dashboard-button-text">Refund</span>
+            <span class="dashboard-button-text" style="font-size: 1.3em;">Refund</span>
             <br />
             <span class="dashboard-button-text-bottom">
               <ion-icon name="cash" style="font-size: 3em;"></ion-icon>

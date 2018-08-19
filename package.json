@@ -37,7 +37,8 @@
     "ngx-color-picker": "6.5.0",
     "angularfire2": "5.0.0-rc.11",
     "firebase": "5.2.0",
-    "angular2-moment": "1.9.0"
+    "angular2-moment": "1.9.0",
+    "@ionic-native/barcode-scanner": "4.12.0"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.9",
@@ -45,7 +46,8 @@
   },
   "cordova": {
     "plugins": {
-      "cordova-sqlite-storage": {}
+      "cordova-sqlite-storage": {},
+      "phonegap-plugin-barcodescanner": {}
     }
   }
 }

@@ -4,7 +4,7 @@ import { OrdersKeypadModalPage } from './order-keypad';
 
 @NgModule({
   declarations: [
-    OrdersKeypadModalPage,
+    OrdersKeypadModalPage
   ],
   imports: [
     IonicPageModule.forChild(OrdersKeypadModalPage)

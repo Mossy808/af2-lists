@@ -12,9 +12,7 @@ import { OrdersPage } from '../pages/orders/orders';
 import { ProductsPage } from '../pages/products/products';
 import { StockPage } from '../pages/stock/stock';
 import { AuditPage } from '../pages/audit/audit';
-import { HistoryPage } from '../pages/history/history';
 import { NotesPage } from '../pages/notes/notes';
-import { UploadPage } from '../pages/upload/upload';
 import { AboutPage } from '../pages/about/about';
 import { SettingsPage } from '../pages/settings/settings';
 
@@ -44,9 +42,7 @@ export class MyApp {
       { title: 'Products', component: ProductsPage },
       { title: 'Stock', component: StockPage },
       { title: 'Audit', component: AuditPage },
-      { title: 'History', component: HistoryPage },
       { title: 'Notes', component: NotesPage },
-      { title: 'Upload', component: UploadPage },
       { title: 'About', component: AboutPage },
       { title: 'Settings', component: SettingsPage },
       { title: 'Logout', component: LoginPage }

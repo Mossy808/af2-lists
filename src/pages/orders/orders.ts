@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams, AlertController, DateTime, ToastCo
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
 import { ItemSliding } from 'ionic-angular';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { ProductModalPage } from '../../pages/product-modal/product-modal';
+import { CategoryModalPage } from '../../pages/category-modal/category-modal';
 
 import { OrdersKeypadModalPage } from '../../pages/order-keypad/order-keypad';
 
@@ -39,10 +42,16 @@ export class OrdersPage {
 
   products: any;
   productsList: AngularFireList<any>;
+
   categories: any;
   categoriesList: AngularFireList<any>;
+
   orders: any;
   ordersList: AngularFireList<any>;
+
+  audits: any;
+  auditsList: AngularFireList<any>;
+
   currentOrderList: Order = new (Order);
   userId: any;
   //product: Product;
@@ -70,17 +79,24 @@ export class OrdersPage {
     public afDatabase: AngularFireDatabase,
     public storage: Storage,
     private toastCtrl: ToastController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    private barcodeScanner: BarcodeScanner
   ) {
     storage.get('userId').then((returnedUserId) => {
       this.userId = returnedUserId;
-      console.log('userId from Product.ts - ', this.userId);
+
       this.productsList = this.afDatabase.list('/products/' + this.userId);
       this.products = afDatabase.list('/products/' + this.userId).valueChanges();
+
       this.categoriesList = this.afDatabase.list('/categories/' + this.userId);
       this.categories = afDatabase.list('/categories/' + this.userId).valueChanges();
+
       this.ordersList = this.afDatabase.list('/orders/' + this.userId);
       this.orders = afDatabase.list('/orders/' + this.userId).valueChanges();
+
+      this.auditsList = this.afDatabase.list('/audits/' + this.userId);
+      this.audits = afDatabase.list('/audits/' + this.userId).valueChanges();
+
       this.snapshotProducts();
       this.snapshotCategories();
     });
@@ -188,6 +204,17 @@ export class OrdersPage {
     this.calculateTotalPrice();
   }
 
+  productBarcodeScanner() {
+    var options = {
+      showTorchButton: true
+    }
+    this.barcodeScanner.scan(options).then(barcodeData => {
+      console.log('Barcode data', barcodeData);
+    }).catch(err => {
+      console.log('Error', err);
+    });
+  }
+
   calculateTotalItems() {
     this.totalItems = 0;
       this.currentOrderList.Products.forEach (element => {
@@ -218,11 +245,27 @@ export class OrdersPage {
       const newOrderRef = this.ordersList.push({});
 
       newOrderRef.set({
-        //userId: this.userId,
         id: newOrderRef.key,
         date: new Date(),
         products: this.currentOrderList.Products
       });
+
+      //add to audit
+
+      const newAuditRef = this.auditsList.push({});
+
+      newAuditRef.set({
+        id: newAuditRef.key,
+        date: new Date(),
+        auditType: 'order',
+        orderTotal: this.totalPrice,
+        totalsItems: this.totalItems,
+        discountType: this.discount.discountType,
+        discountAmount: this.discount.discountAmount,
+        orderedProducts: this.currentOrderList.Products
+      });
+
+      //reset arrays and totals
 
       this.currentOrderList.Products = new Array<OrderProduct>();
       this.calculateTotalItems();
@@ -247,7 +290,15 @@ export class OrdersPage {
   }
 
   addDiscount() {
-    var modalPage = this.modalCtrl.create(OrdersKeypadModalPage);
+    let Discount;
+
+    if (this.discount) {
+      Discount = this.discount;
+    } else {
+      Discount = null;
+    }
+
+    var modalPage = this.modalCtrl.create(OrdersKeypadModalPage, Discount);
     modalPage.onDidDismiss(data => {
       this.discount = data;
       this.calculateTotalPrice();
@@ -349,6 +400,7 @@ export class OrdersPage {
   };
 
   snapshotProducts() {
+    this.productsSnapshot = null;
     this.products.forEach(product => {
 
       if (!this.productsSnapshot) {
@@ -413,6 +465,17 @@ export class OrdersPage {
     toast.present();
   }
 
+  quickAddProductModal() {
+    let selectedProduct = new Product;
+    var modalPage = this.modalCtrl.create(ProductModalPage, selectedProduct);
+    modalPage.present();
+  }
+
+  quickAddCategoryModal() {
+    let selectedCategory = new Category;
+    var modalPage = this.modalCtrl.create(CategoryModalPage, selectedCategory);
+    modalPage.present();
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrdersPage');

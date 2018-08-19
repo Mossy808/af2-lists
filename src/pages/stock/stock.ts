@@ -24,6 +24,9 @@ export class StockPage {
   stockList: AngularFireList<any>;
   date: Date = new Date();
 
+  productsSnapshot: any = [];
+  orginialProductsSnapshot: any = [];
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -40,13 +43,27 @@ export class StockPage {
       this.productsList = this.afDatabase.list('/products/' + this.userId);
       this.products = afDatabase.list('/products/' + this.userId).valueChanges();
 
-      this.stockList = this.afDatabase.list('/stock/' + this.userId + '/' + this.date);
-      this.stock = afDatabase.list('/stock/' + this.userId + '/' + this.date).valueChanges();
-
-      console.log('prods list', this.productsList);
-      console.log('avial', this.products);
+      this.snapshotProducts();
     });
   }
+
+  snapshotProducts() {
+    this.productsSnapshot = null;
+    this.products.forEach(product => {
+
+      if (!this.productsSnapshot) {
+        this.productsSnapshot = [];
+      }
+      for (var i = 0; i < product.length; i++) {
+        product[i].Show = true;
+        this.productsSnapshot.push(product[i]);
+      }
+
+      this.orginialProductsSnapshot = this.productsSnapshot;
+      console.log(this.productsSnapshot);
+    });
+
+  };
 
   saveStock() {
     
